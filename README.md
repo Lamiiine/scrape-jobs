@@ -1,6 +1,6 @@
-# Project Title
+# Visa Sponsored Jobs at Monzo UK
 
-Some introductory text.
+
 
 <!-- START OF JOB LISTINGS -->
 # Visa Sponsorship Jobs at Monzo
