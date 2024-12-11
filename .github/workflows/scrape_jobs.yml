@@ -30,9 +30,12 @@ jobs:
         run: |
           git config --local user.name "github-actions[bot]"
           git config --local user.email "github-actions[bot]@users.noreply.github.com"
+          git stash --include-untracked # Stash unstaged changes, including untracked files
           git pull --rebase origin main  # Pull latest changes and rebase
-          git add README.md visa_sponsorship_jobs_new.md  # Add the modified files
+          git stash pop || echo "No changes to pop" # Reapply stashed changes
+          git add README.md  # Stage the modified README.md
           git commit -m "Update visa sponsorship jobs" || echo "No changes to commit"
           git push origin main
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
