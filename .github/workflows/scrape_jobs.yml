@@ -1,8 +1,11 @@
 name: Daily Job Scraper
 
 on:
+  push:
+    branches:
+      - main  # Triggers the workflow on pushes to the 'main' branch
   schedule:
-    - cron: '0 0 * * *' # Runs daily at midnight UTC
+    - cron: '0 0 * * *'  # Runs daily at midnight UTC
 
 jobs:
   scrape-and-update:
@@ -27,11 +30,9 @@ jobs:
         run: |
           git config --local user.name "github-actions[bot]"
           git config --local user.email "github-actions[bot]@users.noreply.github.com"
-          git pull --rebase origin main # Pull latest changes and rebase
-          git add README.md visa_sponsorship_jobs_new.md # Add the modified files
+          git pull --rebase origin main  # Pull latest changes and rebase
+          git add README.md visa_sponsorship_jobs_new.md  # Add the modified files
           git commit -m "Update visa sponsorship jobs" || echo "No changes to commit"
           git push origin main
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
-
