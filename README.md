@@ -1,4 +1,6 @@
-## Visa Sponsorship Jobs
+# Project Title
 
-<!-- visa-sponsorship-jobs-start -->
-<!-- visa-sponsorship-jobs-end -->
+Some introductory text.
+
+<!-- START OF JOB LISTINGS -->
+<!-- END OF JOB LISTINGS -->
