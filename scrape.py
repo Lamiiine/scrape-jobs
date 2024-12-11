@@ -1,4 +1,5 @@
 import requests
+from datetime import datetime
 
 # Define the company job board token
 board_token = 'monzo'
@@ -8,32 +9,33 @@ url = f'https://boards-api.greenhouse.io/v1/boards/{board_token}/jobs?content=tr
 
 # Make the GET request to the API
 response = requests.get(url)
-response_data = response.json()  # The full JSON response
-jobs = response_data.get('jobs', [])  # Extract the 'jobs' list safely
+jobs = response.json()
 
 # Phrase to identify visa sponsorship
 visa_phrase = "We can sponsor visas"
 
-# Read the current README content
-with open("README.md", "r") as f:
-    content = f.read()
+# Collect job data for Markdown
+job_data = []
 
-# Define the section to update
-start_marker = "<!-- visa-sponsorship-jobs-start -->"
-end_marker = "<!-- visa-sponsorship-jobs-end -->"
+for job in jobs['jobs']:
+    title = job.get('title', 'N/A')
+    location = job.get('location', {}).get('name', 'N/A')
+    description = job.get('content', 'No description available')
+    apply_link = job.get('absolute_url', 'No apply link available')
 
-# Generate the markdown table with the jobs
-job_table = """
-| Job Title       | Company        | Location       | Visa Sponsorship |
-|-----------------|----------------|----------------|------------------|
-""" + "\n".join(
-    f"| {job.get('title', 'N/A')} | {job.get('company', {}).get('name', 'N/A')} | {job.get('location', 'N/A')} | {'Yes' if visa_phrase.lower() in job.get('content', '').lower() else 'No'} |"
-    for job in jobs
-)
+    # Check for the exact visa sponsorship phrase in the description
+    if visa_phrase.lower() in description.lower():
+        visa_support = "✅"
+        job_data.append((title, location, apply_link, visa_support))
 
-# Update the section in the README
-new_content = content.split(start_marker)[0] + start_marker + "\n" + job_table + "\n" + end_marker + content.split(end_marker)[1]
+# Write results to a Markdown file
+with open("visa_sponsorship_jobs_new.md", "w") as f:
+    # Write header
+    f.write("# Visa Sponsorship Jobs at Monzo\n")
+    f.write(f"Updated on {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}\n\n")
+    f.write("| Title | Location | Apply Link | Visa Sponsorship |\n")
+    f.write("|-------|----------|------------|-------------------|\n")
 
-# Write the updated content back to README.md
-with open("README.md", "w") as f:
-    f.write(new_content)
+    # Write job entries
+    for title, location, apply_link, visa_support in job_data:
+        f.write(f"| {title} | {location} | [Apply]({apply_link}) | {visa_support} |\n")
