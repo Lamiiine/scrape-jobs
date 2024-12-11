@@ -14,28 +14,27 @@ jobs = response.json()
 # Phrase to identify visa sponsorship
 visa_phrase = "We can sponsor visas"
 
-# Collect job data for Markdown
-job_data = []
+# Read the current README content
+with open("README.md", "r") as f:
+    content = f.read()
 
-for job in jobs['jobs']:
-    title = job.get('title', 'N/A')
-    location = job.get('location', {}).get('name', 'N/A')
-    description = job.get('content', 'No description available')
-    apply_link = job.get('absolute_url', 'No apply link available')
+# Define the section to update
+start_marker = "<!-- visa-sponsorship-jobs-start -->"
+end_marker = "<!-- visa-sponsorship-jobs-end -->"
 
-    # Check for the exact visa sponsorship phrase in the description
-    if visa_phrase.lower() in description.lower():
-        visa_support = "✅"
-        job_data.append((title, location, apply_link, visa_support))
+# Generate the markdown table with the jobs
+job_table = """
+| Job Title       | Company | Location       | Visa Sponsorship |
+|-----------------|---------|----------------|------------------|
+""" + "\n".join(
+    f"| {job['title']} | {job['company']} | {job['location']} | {'Yes' if 'visa' in job['description'].lower() else 'No'} |"
+    for job in jobs
+)
 
-# Write results to a Markdown file
-with open("visa_sponsorship_jobs.md", "w") as f:
-    # Write header
-    f.write("# Visa Sponsorship Jobs at Monzo\n")
-    f.write(f"Updated on {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}\n\n")
-    f.write("| Title | Location | Apply Link | Visa Sponsorship |\n")
-    f.write("|-------|----------|------------|-------------------|\n")
+# Update the section in the README
+new_content = content.split(start_marker)[0] + start_marker + "\n" + job_table + "\n" + end_marker + content.split(end_marker)[1]
 
-    # Write job entries
-    for title, location, apply_link, visa_support in job_data:
-        f.write(f"| {title} | {location} | [Apply]({apply_link}) | {visa_support} |\n")
+# Write the updated content back to README.md
+with open("README.md", "w") as f:
+    f.write(new_content)
+
