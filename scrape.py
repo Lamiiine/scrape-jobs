@@ -24,10 +24,10 @@ end_marker = "<!-- visa-sponsorship-jobs-end -->"
 
 # Generate the markdown table with the jobs
 job_table = """
-| Job Title       | Company | Location       | Visa Sponsorship |
-|-----------------|---------|----------------|------------------|
+| Job Title       | Company        | Location       | Visa Sponsorship |
+|-----------------|----------------|----------------|------------------|
 """ + "\n".join(
-    f"| {job['title']} | {job['company']['name']} | {job['location']} | {'Yes' if visa_phrase.lower() in job['content'].lower() else 'No'} |"
+    f"| {job.get('title', 'N/A')} | {job.get('company', {}).get('name', 'N/A')} | {job.get('location', 'N/A')} | {'Yes' if visa_phrase.lower() in job.get('content', '').lower() else 'No'} |"
     for job in jobs
 )
 
