@@ -28,14 +28,36 @@ for job in jobs['jobs']:
         visa_support = "✅"
         job_data.append((title, location, apply_link, visa_support))
 
-# Write results to a Markdown file
-with open("visa_sponsorship_jobs_new.md", "w") as f:
-    # Write header
-    f.write("# Visa Sponsorship Jobs at Monzo\n")
-    f.write(f"Updated on {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}\n\n")
-    f.write("| Title | Location | Apply Link | Visa Sponsorship |\n")
-    f.write("|-------|----------|------------|-------------------|\n")
+# Generate the new job listings section
+new_section = []
+new_section.append("<!-- START OF JOB LISTINGS -->")
+new_section.append("# Visa Sponsorship Jobs at Monzo")
+new_section.append(f"Updated on {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}\n")
+new_section.append("| Title | Location | Apply Link | Visa Sponsorship |")
+new_section.append("|-------|----------|------------|------------------|")
 
-    # Write job entries
-    for title, location, apply_link, visa_support in job_data:
-        f.write(f"| {title} | {location} | [Apply]({apply_link}) | {visa_support} |\n")
+for title, location, apply_link, visa_support in job_data:
+    new_section.append(f"| {title} | {location} | [Apply]({apply_link}) | {visa_support} |")
+
+new_section.append("<!-- END OF JOB LISTINGS -->")
+
+# Read the existing README.md
+with open("README.md", "r") as file:
+    content = file.read()
+
+# Replace the old section with the new section
+start_marker = "<!-- START OF JOB LISTINGS -->"
+end_marker = "<!-- END OF JOB LISTINGS -->"
+
+start_index = content.find(start_marker)
+end_index = content.find(end_marker) + len(end_marker)
+
+if start_index != -1 and end_index != -1:
+    updated_content = content[:start_index] + "\n".join(new_section) + content[end_index:]
+else:
+    # If markers are not found, append the new section at the end
+    updated_content = content + "\n" + "\n".join(new_section)
+
+# Write the updated content back to README.md
+with open("README.md", "w") as file:
+    file.write(updated_content)
