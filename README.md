@@ -4,7 +4,7 @@
 
 <!-- START OF JOB LISTINGS -->
 # Visa Sponsorship Jobs at Monzo
-Updated on 2024-12-11 09:46:24
+Updated on 2024-12-12 01:51:24
 
 | Title | Location | Apply Link | Visa Sponsorship |
 |-------|----------|------------|------------------|
@@ -13,6 +13,7 @@ Updated on 2024-12-11 09:46:24
 | Credit Risk Manager, Business Borrowing | Cardiff, London or Remote (UK) | [Apply](https://job-boards.greenhouse.io/monzo/jobs/6364447) | ✅ |
 | Data Science Manager  | London | [Apply](https://job-boards.greenhouse.io/monzo/jobs/5758065) | ✅ |
 | Director of Corporate Legal | London | [Apply](https://job-boards.greenhouse.io/monzo/jobs/6437792) | ✅ |
+| Engineering Manager | Cardiff, London or Remote (UK) | [Apply](https://job-boards.greenhouse.io/monzo/jobs/5018066) | ✅ |
 | Group Product Manager, Business Banking | London | [Apply](https://job-boards.greenhouse.io/monzo/jobs/6428865) | ✅ |
 | iOS Engineer | Cardiff, London or Remote (UK) | [Apply](https://job-boards.greenhouse.io/monzo/jobs/2413515) | ✅ |
 | Lead Credit Analyst, Business Borrowing | Cardiff, London or Remote (UK) | [Apply](https://job-boards.greenhouse.io/monzo/jobs/6364469) | ✅ |
