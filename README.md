@@ -4,7 +4,7 @@
 
 <!-- START OF JOB LISTINGS -->
 # Visa Sponsorship Jobs at Monzo
-Updated on 2025-01-06 01:46:59
+Updated on 2025-01-07 01:43:26
 
 | Title | Location | Apply Link | Visa Sponsorship |
 |-------|----------|------------|------------------|
@@ -25,7 +25,6 @@ Updated on 2025-01-06 01:46:59
 | Product Director, Operations | London | [Apply](https://job-boards.greenhouse.io/monzo/jobs/6125707) | ✅ |
 | Product Manager, Business Banking | London | [Apply](https://job-boards.greenhouse.io/monzo/jobs/6436641) | ✅ |
 | Product Manager, Subscriptions Partnerships | Remote (UK) | [Apply](https://job-boards.greenhouse.io/monzo/jobs/6468804) | ✅ |
-| Senior Analytics Engineer | Cardiff, London or Remote (UK) | [Apply](https://job-boards.greenhouse.io/monzo/jobs/6076740) | ✅ |
 | Senior Backend Engineer I  | Cardiff, London or Remote (UK) | [Apply](https://job-boards.greenhouse.io/monzo/jobs/6499594) | ✅ |
 | Senior Backend Engineer II | Cardiff, London or Remote (UK) | [Apply](https://job-boards.greenhouse.io/monzo/jobs/6499595) | ✅ |
 | Senior Credit Analyst, Personal Borrowing | Cardiff, London or Remote (UK) | [Apply](https://job-boards.greenhouse.io/monzo/jobs/6377125) | ✅ |
@@ -35,7 +34,6 @@ Updated on 2025-01-06 01:46:59
 | Senior Decision Scientist | Cardiff, London or Remote (UK) | [Apply](https://job-boards.greenhouse.io/monzo/jobs/6053295) | ✅ |
 | Senior Director of Engineering, Personalisation | Cardiff, London or Remote (UK) | [Apply](https://job-boards.greenhouse.io/monzo/jobs/6470713) | ✅ |
 | Senior Engineering Manager | Cardiff, London or Remote (UK) | [Apply](https://job-boards.greenhouse.io/monzo/jobs/6394676) | ✅ |
-| Senior Machine Learning Scientist, Customer Operations | London | [Apply](https://job-boards.greenhouse.io/monzo/jobs/6099886) | ✅ |
 | Senior Product Manager, Business Borrowing | London | [Apply](https://job-boards.greenhouse.io/monzo/jobs/6344404) | ✅ |
 | Senior Product Manager, Fincrime | London | [Apply](https://job-boards.greenhouse.io/monzo/jobs/6222494) | ✅ |
 | Senior Product Manager, Flex | London | [Apply](https://job-boards.greenhouse.io/monzo/jobs/6374850) | ✅ |
