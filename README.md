@@ -4,7 +4,7 @@
 
 <!-- START OF JOB LISTINGS -->
 # Visa Sponsorship Jobs at Monzo
-Updated on 2025-01-14 01:38:16
+Updated on 2025-01-15 01:40:12
 
 | Title | Location | Apply Link | Visa Sponsorship |
 |-------|----------|------------|------------------|
@@ -19,10 +19,6 @@ Updated on 2025-01-14 01:38:16
 | Lead Credit Analyst, Business Borrowing | Cardiff, London or Remote (UK) | [Apply](https://job-boards.greenhouse.io/monzo/jobs/6364469) | ✅ |
 | Lead Credit Analyst, Personal Borrowing | Cardiff, London or Remote (UK) | [Apply](https://job-boards.greenhouse.io/monzo/jobs/6377274) | ✅ |
 | Lead Data Scientist | Cardiff, London or Remote (UK) | [Apply](https://job-boards.greenhouse.io/monzo/jobs/6369658) | ✅ |
-| Lead Product Manager, App Experience | London | [Apply](https://job-boards.greenhouse.io/monzo/jobs/6451450) | ✅ |
-| Principal Product Manager, Operations | London | [Apply](https://job-boards.greenhouse.io/monzo/jobs/5851147) | ✅ |
-| Product Director, App Experience | Cardiff, London or Remote (UK) | [Apply](https://job-boards.greenhouse.io/monzo/jobs/6465289) | ✅ |
-| Product Director, Operations | London | [Apply](https://job-boards.greenhouse.io/monzo/jobs/6125707) | ✅ |
 | Product Manager, Business Banking | London | [Apply](https://job-boards.greenhouse.io/monzo/jobs/6436641) | ✅ |
 | Product Manager, Subscriptions Partnerships | London | [Apply](https://job-boards.greenhouse.io/monzo/jobs/6468804) | ✅ |
 | Senior Backend Engineer I  | Cardiff, London or Remote (UK) | [Apply](https://job-boards.greenhouse.io/monzo/jobs/6499594) | ✅ |
@@ -37,5 +33,4 @@ Updated on 2025-01-14 01:38:16
 | Senior Product Manager, Business Borrowing | London | [Apply](https://job-boards.greenhouse.io/monzo/jobs/6344404) | ✅ |
 | Senior Product Manager, Fincrime | London | [Apply](https://job-boards.greenhouse.io/monzo/jobs/6222494) | ✅ |
 | Senior Product Manager, Flex | London | [Apply](https://job-boards.greenhouse.io/monzo/jobs/6374850) | ✅ |
-| Senior Product Manager, Operations | London | [Apply](https://job-boards.greenhouse.io/monzo/jobs/6457824) | ✅ |
 <!-- END OF JOB LISTINGS -->
