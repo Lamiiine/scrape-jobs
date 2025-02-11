@@ -4,7 +4,7 @@
 
 <!-- START OF JOB LISTINGS -->
 # Visa Sponsorship Jobs at Monzo
-Updated on 2025-02-10 01:43:08
+Updated on 2025-02-11 01:41:40
 
 | Title | Location | Apply Link | Visa Sponsorship |
 |-------|----------|------------|------------------|
@@ -13,7 +13,6 @@ Updated on 2025-02-10 01:43:08
 | Credit Risk Manager, Business Borrowing | Cardiff, London or Remote (UK) | [Apply](https://job-boards.greenhouse.io/monzo/jobs/6364447) | ✅ |
 | Data Lead | San Francisco or New York City | [Apply](https://job-boards.greenhouse.io/monzo/jobs/6582185) | ✅ |
 | Data Science Manager, Financial Crime  | Cardiff, London or Remote (UK) | [Apply](https://job-boards.greenhouse.io/monzo/jobs/5758065) | ✅ |
-| Director of Corporate Legal | London | [Apply](https://job-boards.greenhouse.io/monzo/jobs/6437792) | ✅ |
 | Engineering Manager | Cardiff, London or Remote (UK) | [Apply](https://job-boards.greenhouse.io/monzo/jobs/5018066) | ✅ |
 | Group Product Manager, Business Banking | London | [Apply](https://job-boards.greenhouse.io/monzo/jobs/6428865) | ✅ |
 | iOS Engineer | Cardiff, London or Remote (UK) | [Apply](https://job-boards.greenhouse.io/monzo/jobs/2413515) | ✅ |
@@ -22,7 +21,6 @@ Updated on 2025-02-10 01:43:08
 | Lead Data Scientist | Cardiff, London or Remote (UK) | [Apply](https://job-boards.greenhouse.io/monzo/jobs/6369658) | ✅ |
 | Product Director, App Experience | Cardiff, London or Remote (UK) | [Apply](https://job-boards.greenhouse.io/monzo/jobs/6465289) | ✅ |
 | Senior Backend Engineer I  | Cardiff, London or Remote (UK) | [Apply](https://job-boards.greenhouse.io/monzo/jobs/6499594) | ✅ |
-| Senior Backend Engineer II | Cardiff, London or Remote (UK) | [Apply](https://job-boards.greenhouse.io/monzo/jobs/6499595) | ✅ |
 | Senior Credit Analyst, Personal Borrowing | Cardiff, London or Remote (UK) | [Apply](https://job-boards.greenhouse.io/monzo/jobs/6377125) | ✅ |
 | Senior Data Science Manager, Core | Cardiff, London or Remote (UK) | [Apply](https://job-boards.greenhouse.io/monzo/jobs/6374894) | ✅ |
 | Senior Data Science Manager, EU Expansion  | Cardiff, London or Remote (UK) | [Apply](https://job-boards.greenhouse.io/monzo/jobs/6559002) | ✅ |
