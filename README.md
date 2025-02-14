@@ -4,7 +4,7 @@
 
 <!-- START OF JOB LISTINGS -->
 # Visa Sponsorship Jobs at Monzo
-Updated on 2025-02-13 01:42:27
+Updated on 2025-02-14 01:41:46
 
 | Title | Location | Apply Link | Visa Sponsorship |
 |-------|----------|------------|------------------|
@@ -31,6 +31,4 @@ Updated on 2025-02-13 01:42:27
 | Senior Product Manager, Business Borrowing | London | [Apply](https://job-boards.greenhouse.io/monzo/jobs/6344404) | ✅ |
 | Senior Product Manager, Credit Platform | London | [Apply](https://job-boards.greenhouse.io/monzo/jobs/6590866) | ✅ |
 | Senior Product Manager, Flex | London | [Apply](https://job-boards.greenhouse.io/monzo/jobs/6374850) | ✅ |
-| Special Projects Associate | London | [Apply](https://job-boards.greenhouse.io/monzo/jobs/6602096) | ✅ |
-| Special Projects Manager | London | [Apply](https://job-boards.greenhouse.io/monzo/jobs/6602111) | ✅ |
 <!-- END OF JOB LISTINGS -->
