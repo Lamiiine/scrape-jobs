@@ -4,13 +4,12 @@
 
 <!-- START OF JOB LISTINGS -->
 # Visa Sponsorship Jobs at Monzo
-Updated on 2025-02-17 01:45:34
+Updated on 2025-02-18 01:41:44
 
 | Title | Location | Apply Link | Visa Sponsorship |
 |-------|----------|------------|------------------|
 | Android Engineer | Cardiff, London or Remote (UK) | [Apply](https://job-boards.greenhouse.io/monzo/jobs/2578107) | ✅ |
-| Backend Engineer II  | Cardiff, London or Remote (UK) | [Apply](https://job-boards.greenhouse.io/monzo/jobs/6635665) | ✅ |
-| Backend Engineer III | Cardiff, London or Remote (UK) | [Apply](https://job-boards.greenhouse.io/monzo/jobs/5272421) | ✅ |
+| Backend Engineer III  | Cardiff, London or Remote (UK) | [Apply](https://job-boards.greenhouse.io/monzo/jobs/6635595) | ✅ |
 | Credit Risk Manager, Business Borrowing | Cardiff, London or Remote (UK) | [Apply](https://job-boards.greenhouse.io/monzo/jobs/6364447) | ✅ |
 | Data Lead | San Francisco or New York City | [Apply](https://job-boards.greenhouse.io/monzo/jobs/6582185) | ✅ |
 | Data Science Manager, Financial Crime  | Cardiff, London or Remote (UK) | [Apply](https://job-boards.greenhouse.io/monzo/jobs/5758065) | ✅ |
