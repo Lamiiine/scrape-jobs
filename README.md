@@ -4,14 +4,13 @@
 
 <!-- START OF JOB LISTINGS -->
 # Visa Sponsorship Jobs at Monzo
-Updated on 2025-04-10 01:51:17
+Updated on 2025-04-11 01:52:01
 
 | Title | Location | Apply Link | Visa Sponsorship |
 |-------|----------|------------|------------------|
 | Backend Engineer III  | Cardiff, London or Remote (UK) | [Apply](https://job-boards.greenhouse.io/monzo/jobs/6635595) | ✅ |
 | Data Director, Personalisation | London | [Apply](https://job-boards.greenhouse.io/monzo/jobs/6640424) | ✅ |
 | Data Protection Director | Cardiff, London or Remote (UK) | [Apply](https://job-boards.greenhouse.io/monzo/jobs/6717431) | ✅ |
-| Director of Expansion Markets, Marketing | London | [Apply](https://job-boards.greenhouse.io/monzo/jobs/6776358) | ✅ |
 | Engineering Manager | Cardiff, London or Remote (UK) | [Apply](https://job-boards.greenhouse.io/monzo/jobs/5018066) | ✅ |
 | Group Product Manager, Business Banking | London | [Apply](https://job-boards.greenhouse.io/monzo/jobs/6428865) | ✅ |
 | Lead Credit Analyst, Business Borrowing | Cardiff, London or Remote (UK) | [Apply](https://job-boards.greenhouse.io/monzo/jobs/6758627) | ✅ |
@@ -27,7 +26,6 @@ Updated on 2025-04-10 01:51:17
 | Senior Decision Scientist | Cardiff, London or Remote (UK) | [Apply](https://job-boards.greenhouse.io/monzo/jobs/6053295) | ✅ |
 | Senior Engineering Manager | Cardiff, London or Remote (UK) | [Apply](https://job-boards.greenhouse.io/monzo/jobs/6394676) | ✅ |
 | Senior iOS Engineer | Cardiff, London or Remote (UK) | [Apply](https://job-boards.greenhouse.io/monzo/jobs/3838039) | ✅ |
-| Senior Platform Engineer  | Cardiff, London or Remote (UK) | [Apply](https://job-boards.greenhouse.io/monzo/jobs/6699672) | ✅ |
 | Senior Product Manager, Credit Platform | London | [Apply](https://job-boards.greenhouse.io/monzo/jobs/6590866) | ✅ |
 | Senior Product Manager, Flex | London | [Apply](https://job-boards.greenhouse.io/monzo/jobs/6374850) | ✅ |
 | Senior Product Manager, Global Payments | London | [Apply](https://job-boards.greenhouse.io/monzo/jobs/6767221) | ✅ |
