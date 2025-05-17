@@ -4,12 +4,12 @@
 
 <!-- START OF JOB LISTINGS -->
 # Visa Sponsorship Jobs at Monzo
-Updated on 2025-05-16 01:58:54
+Updated on 2025-05-17 01:55:09
 
 | Title | Location | Apply Link | Visa Sponsorship |
 |-------|----------|------------|------------------|
 | Backend Engineer III  | Cardiff, London or Remote (UK) | [Apply](https://job-boards.greenhouse.io/monzo/jobs/6635595) | ✅ |
-| Data Analytics Manager, Financial Health | London | [Apply](https://job-boards.greenhouse.io/monzo/jobs/6886918) | ✅ |
+| Data Analytics Manager, Financial Health | Cardiff, London or Remote (UK) | [Apply](https://job-boards.greenhouse.io/monzo/jobs/6886918) | ✅ |
 | Data Protection Director | Cardiff, London or Remote (UK) | [Apply](https://job-boards.greenhouse.io/monzo/jobs/6717431) | ✅ |
 | Data Science Manager,  Financial Crime  | Cardiff, London or Remote (UK) | [Apply](https://job-boards.greenhouse.io/monzo/jobs/5758065) | ✅ |
 | Engineering Manager | Cardiff, London or Remote (UK) | [Apply](https://job-boards.greenhouse.io/monzo/jobs/5018066) | ✅ |
@@ -30,7 +30,6 @@ Updated on 2025-05-16 01:58:54
 | Senior Legal Counsel, Insurance | London; Remote (UK) | [Apply](https://job-boards.greenhouse.io/monzo/jobs/6886566) | ✅ |
 | Senior Machine Learning Scientist | Cardiff, London or Remote (UK) | [Apply](https://job-boards.greenhouse.io/monzo/jobs/6053295) | ✅ |
 | Senior Platform Engineer  | Cardiff, London or Remote (UK) | [Apply](https://job-boards.greenhouse.io/monzo/jobs/6699672) | ✅ |
-| Senior Product Manager, Credit Platform | London | [Apply](https://job-boards.greenhouse.io/monzo/jobs/6590866) | ✅ |
 | Senior Product Manager, Flex | London | [Apply](https://job-boards.greenhouse.io/monzo/jobs/6374850) | ✅ |
 | Senior Product Manager, Global Payments | London | [Apply](https://job-boards.greenhouse.io/monzo/jobs/6767221) | ✅ |
 | Senior Product Manager, Open Banking | London; Remote (UK) | [Apply](https://job-boards.greenhouse.io/monzo/jobs/6646535) | ✅ |
