@@ -4,7 +4,7 @@
 
 <!-- START OF JOB LISTINGS -->
 # Visa Sponsorship Jobs at Monzo
-Updated on 2025-06-24 02:03:24
+Updated on 2025-06-25 02:03:28
 
 | Title | Location | Apply Link | Visa Sponsorship |
 |-------|----------|------------|------------------|
@@ -12,6 +12,7 @@ Updated on 2025-06-24 02:03:24
 | Credit Risk Director, Flex Originations (Credit Cards) | Cardiff, London or Remote (UK) | [Apply](https://job-boards.greenhouse.io/monzo/jobs/6893542) | ✅ |
 | Credit Risk Manager, Flex Originations (Credit Cards) | Cardiff, London or Remote (UK) | [Apply](https://job-boards.greenhouse.io/monzo/jobs/6939370) | ✅ |
 | Data Science Manager,  Financial Crime  | Cardiff, London or Remote (UK) | [Apply](https://job-boards.greenhouse.io/monzo/jobs/5758065) | ✅ |
+| Engineering Manager | Cardiff, London or Remote (UK) | [Apply](https://job-boards.greenhouse.io/monzo/jobs/5018066) | ✅ |
 | Group Product Manager, Business Banking | London | [Apply](https://job-boards.greenhouse.io/monzo/jobs/6428865) | ✅ |
 | Head of Professional Practices - Internal Audit | Cardiff, London or Remote (UK) | [Apply](https://job-boards.greenhouse.io/monzo/jobs/6972679) | ✅ |
 | Lead Credit Analyst, Business Borrowing | Cardiff, London or Remote (UK) | [Apply](https://job-boards.greenhouse.io/monzo/jobs/6758627) | ✅ |
@@ -19,7 +20,6 @@ Updated on 2025-06-24 02:03:24
 | Lead Data Scientist | Cardiff, London or Remote (UK) | [Apply](https://job-boards.greenhouse.io/monzo/jobs/6369658) | ✅ |
 | Lead Product Manager, Search & Recommendations  | London; Remote (UK) | [Apply](https://job-boards.greenhouse.io/monzo/jobs/6451450) | ✅ |
 | Principal Product Manager, Operations | London | [Apply](https://job-boards.greenhouse.io/monzo/jobs/5851147) | ✅ |
-| Product Manager, Ops | London | [Apply](https://job-boards.greenhouse.io/monzo/jobs/6990190) | ✅ |
 | Senior Backend Engineer | Cardiff, London or Remote (UK) | [Apply](https://job-boards.greenhouse.io/monzo/jobs/6635837) | ✅ |
 | Senior Credit Analyst, Personal Borrowing | Cardiff, London or Remote (UK) | [Apply](https://job-boards.greenhouse.io/monzo/jobs/6758614) | ✅ |
 | Senior Credit Manager, Business Borrowing | Cardiff, London or Remote (UK) | [Apply](https://job-boards.greenhouse.io/monzo/jobs/6904498) | ✅ |
