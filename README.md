@@ -4,7 +4,7 @@
 
 <!-- START OF JOB LISTINGS -->
 # Visa Sponsorship Jobs at Monzo
-Updated on 2025-07-09 02:05:08
+Updated on 2025-07-10 02:05:33
 
 | Title | Location | Apply Link | Visa Sponsorship |
 |-------|----------|------------|------------------|
@@ -23,6 +23,7 @@ Updated on 2025-07-09 02:05:08
 | Lead Product Manager, Recommendations  | London; Remote (UK) | [Apply](https://job-boards.greenhouse.io/monzo/jobs/6451450) | ✅ |
 | Principal Product Manager, Operations | London | [Apply](https://job-boards.greenhouse.io/monzo/jobs/5851147) | ✅ |
 | Product Director, Core Banking (Accounts) | London | [Apply](https://job-boards.greenhouse.io/monzo/jobs/7029159) | ✅ |
+| Senior Analytics Engineer | Cardiff, London or Remote (UK) | [Apply](https://job-boards.greenhouse.io/monzo/jobs/6076740) | ✅ |
 | Senior Backend Engineer | Cardiff, London or Remote (UK) | [Apply](https://job-boards.greenhouse.io/monzo/jobs/6635837) | ✅ |
 | Senior Credit Analyst, Personal Borrowing | Cardiff, London or Remote (UK) | [Apply](https://job-boards.greenhouse.io/monzo/jobs/6758614) | ✅ |
 | Senior Credit Manager, Business Borrowing | Cardiff, London or Remote (UK) | [Apply](https://job-boards.greenhouse.io/monzo/jobs/6904498) | ✅ |
@@ -35,5 +36,7 @@ Updated on 2025-07-09 02:05:08
 | Senior Product Manager, Global Payments | London | [Apply](https://job-boards.greenhouse.io/monzo/jobs/6767221) | ✅ |
 | Senior Product Manager, Open Banking | London; Remote (UK) | [Apply](https://job-boards.greenhouse.io/monzo/jobs/6646535) | ✅ |
 | Senior Staff Machine Learning Scientist, Operations | London | [Apply](https://job-boards.greenhouse.io/monzo/jobs/6883842) | ✅ |
+| Special Projects Associate | London | [Apply](https://job-boards.greenhouse.io/monzo/jobs/6602096) | ✅ |
+| Special Projects Manager | London | [Apply](https://job-boards.greenhouse.io/monzo/jobs/6602111) | ✅ |
 | Staff Backend Engineer  | Cardiff, London or Remote (UK) | [Apply](https://job-boards.greenhouse.io/monzo/jobs/6636147) | ✅ |
 <!-- END OF JOB LISTINGS -->
