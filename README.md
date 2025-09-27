@@ -4,7 +4,7 @@
 
 <!-- START OF JOB LISTINGS -->
 # Visa Sponsorship Jobs at Monzo
-Updated on 2025-09-26 01:49:17
+Updated on 2025-09-27 01:45:01
 
 | Title | Location | Apply Link | Visa Sponsorship |
 |-------|----------|------------|------------------|
@@ -19,11 +19,11 @@ Updated on 2025-09-26 01:49:17
 | Group Product Manager | London; Remote (UK) | [Apply](https://job-boards.greenhouse.io/monzo/jobs/6428865) | ✅ |
 | Head of Group Commercial Legal | Cardiff, London or Remote (UK) | [Apply](https://job-boards.greenhouse.io/monzo/jobs/7214785) | ✅ |
 | Lead Data Scientist | Cardiff, London or Remote (UK) | [Apply](https://job-boards.greenhouse.io/monzo/jobs/6369658) | ✅ |
-| Lead Product Manager | London; Remote (UK) | [Apply](https://job-boards.greenhouse.io/monzo/jobs/7029159) | ✅ |
 | Lead Product Manager, Acquiring | Cardiff, London or Remote (UK) | [Apply](https://job-boards.greenhouse.io/monzo/jobs/7030801) | ✅ |
 | Lead Product Manager, Recommendations | London; Remote (UK) | [Apply](https://job-boards.greenhouse.io/monzo/jobs/6451450) | ✅ |
 | Principal Legal Counsel, Corporate | London | [Apply](https://job-boards.greenhouse.io/monzo/jobs/7105400) | ✅ |
 | Principal Product Manager, Operations | London; Remote (UK) | [Apply](https://job-boards.greenhouse.io/monzo/jobs/5851147) | ✅ |
+| Product Director, Core Banking (Accounts)  | London; Remote (UK) | [Apply](https://job-boards.greenhouse.io/monzo/jobs/7029159) | ✅ |
 | Senior Backend Engineer | Cardiff, London or Remote (UK) | [Apply](https://job-boards.greenhouse.io/monzo/jobs/6635837) | ✅ |
 | Senior Credit Analyst, Personal Borrowing | Cardiff, London or Remote (UK) | [Apply](https://job-boards.greenhouse.io/monzo/jobs/6758614) | ✅ |
 | Senior Credit Manager, Business Borrowing | Cardiff, London or Remote (UK) | [Apply](https://job-boards.greenhouse.io/monzo/jobs/6904498) | ✅ |
