@@ -4,7 +4,7 @@
 
 <!-- START OF JOB LISTINGS -->
 # Visa Sponsorship Jobs at Monzo
-Updated on 2025-10-10 01:49:47
+Updated on 2025-10-11 01:45:14
 
 | Title | Location | Apply Link | Visa Sponsorship |
 |-------|----------|------------|------------------|
@@ -18,7 +18,7 @@ Updated on 2025-10-10 01:49:47
 | Group Board Support Manager | London; Remote (UK) | [Apply](https://job-boards.greenhouse.io/monzo/jobs/6886769) | ✅ |
 | Group Product Manager | London; Remote (UK) | [Apply](https://job-boards.greenhouse.io/monzo/jobs/6428865) | ✅ |
 | Lead Data Scientist | Cardiff, London or Remote (UK) | [Apply](https://job-boards.greenhouse.io/monzo/jobs/6369658) | ✅ |
-| Lead Product Manager, Acquiring | Cardiff, London or Remote (UK); Spain | [Apply](https://job-boards.greenhouse.io/monzo/jobs/7030801) | ✅ |
+| Lead Product Manager, Acquiring | Cardiff, London or Remote (UK) | [Apply](https://job-boards.greenhouse.io/monzo/jobs/7030801) | ✅ |
 | Lead Product Manager, Recommendations | London; Remote (UK) | [Apply](https://job-boards.greenhouse.io/monzo/jobs/6451450) | ✅ |
 | Principal Product Manager, Operations | London; Remote (UK) | [Apply](https://job-boards.greenhouse.io/monzo/jobs/5851147) | ✅ |
 | Product Director, Core Banking (Accounts)  | London; Remote (UK) | [Apply](https://job-boards.greenhouse.io/monzo/jobs/7029159) | ✅ |
