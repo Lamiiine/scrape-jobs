@@ -4,7 +4,7 @@
 
 <!-- START OF JOB LISTINGS -->
 # Visa Sponsorship Jobs at Monzo
-Updated on 2025-12-05 02:02:15
+Updated on 2025-12-06 01:55:33
 
 | Title | Location | Apply Link | Visa Sponsorship |
 |-------|----------|------------|------------------|
@@ -14,9 +14,11 @@ Updated on 2025-12-05 02:02:15
 | Credit Risk Manager, Flex Originations (Credit Cards) | Cardiff, London or Remote (UK) | [Apply](https://job-boards.greenhouse.io/monzo/jobs/6939370) | ✅ |
 | Data Science Manager, Payments | Cardiff, London or Remote (UK); London | [Apply](https://job-boards.greenhouse.io/monzo/jobs/7434107) | ✅ |
 | Lead Data Scientist | Cardiff, London or Remote (UK) | [Apply](https://job-boards.greenhouse.io/monzo/jobs/6369658) | ✅ |
+| Lead Product Manager, Core Banking | London | [Apply](https://job-boards.greenhouse.io/monzo/jobs/7439845) | ✅ |
 | Product Director, Core Banking (Accounts)  | London; Remote (UK) | [Apply](https://job-boards.greenhouse.io/monzo/jobs/7029159) | ✅ |
 | Senior Backend Engineer | Cardiff, London or Remote (UK) | [Apply](https://job-boards.greenhouse.io/monzo/jobs/6635837) | ✅ |
 | Senior Credit Analyst, Financial Health  | Cardiff, London or Remote (UK) | [Apply](https://job-boards.greenhouse.io/monzo/jobs/7317287) | ✅ |
+| Senior Data Scientist | Cardiff, London or Remote (UK) | [Apply](https://job-boards.greenhouse.io/monzo/jobs/6180814) | ✅ |
 | Senior Legal Counsel, Data and Cyber | Cardiff, London or Remote (UK) | [Apply](https://job-boards.greenhouse.io/monzo/jobs/7335044) | ✅ |
 | Senior Legal Counsel - Employment, Incentives & Pensions | London; Remote (UK) | [Apply](https://job-boards.greenhouse.io/monzo/jobs/6804239) | ✅ |
 | Senior Platform Engineer  | Cardiff, London or Remote (UK) | [Apply](https://job-boards.greenhouse.io/monzo/jobs/6699672) | ✅ |
