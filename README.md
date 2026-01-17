@@ -4,10 +4,11 @@
 
 <!-- START OF JOB LISTINGS -->
 # Visa Sponsorship Jobs at Monzo
-Updated on 2026-01-16 02:10:27
+Updated on 2026-01-17 02:04:12
 
 | Title | Location | Apply Link | Visa Sponsorship |
 |-------|----------|------------|------------------|
+| Backend Engineer III | New York City | [Apply](https://job-boards.greenhouse.io/monzo/jobs/7383480) | ✅ |
 | Backend Engineer III  | Cardiff, London or Remote (UK) | [Apply](https://job-boards.greenhouse.io/monzo/jobs/6635595) | ✅ |
 | Credit Analyst, Flex | Cardiff, London or Remote (UK) | [Apply](https://job-boards.greenhouse.io/monzo/jobs/6758600) | ✅ |
 | Credit Risk Director, Flex Portfolio Management  | Cardiff, London or Remote (UK); London | [Apply](https://job-boards.greenhouse.io/monzo/jobs/7367062) | ✅ |
