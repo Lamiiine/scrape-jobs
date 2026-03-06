@@ -4,7 +4,7 @@
 
 <!-- START OF JOB LISTINGS -->
 # Visa Sponsorship Jobs at Monzo
-Updated on 2026-03-05 02:38:15
+Updated on 2026-03-06 02:35:46
 
 | Title | Location | Apply Link | Visa Sponsorship |
 |-------|----------|------------|------------------|
@@ -13,6 +13,8 @@ Updated on 2026-03-05 02:38:15
 | Credit Analyst | Cardiff, London or Remote (UK) | [Apply](https://job-boards.greenhouse.io/monzo/jobs/6758600) | ✅ |
 | Engineering Manager | Cardiff, London or Remote (UK) | [Apply](https://job-boards.greenhouse.io/monzo/jobs/5018066) | ✅ |
 | Lead Data Scientist | Cardiff, London or Remote (UK) | [Apply](https://job-boards.greenhouse.io/monzo/jobs/6369658) | ✅ |
+| Platform Engineer  | Cardiff, London or Remote (UK) | [Apply](https://job-boards.greenhouse.io/monzo/jobs/6699672) | ✅ |
+| Platform Engineer, Machine Learning | Cardiff, London or Remote (UK); London | [Apply](https://job-boards.greenhouse.io/monzo/jobs/7118972) | ✅ |
 | Senior Backend Engineer | Cardiff, London or Remote (UK) | [Apply](https://job-boards.greenhouse.io/monzo/jobs/6635837) | ✅ |
 | Senior Credit Analyst, Credit Cards | Cardiff, London or Remote (UK) | [Apply](https://job-boards.greenhouse.io/monzo/jobs/7655258) | ✅ |
 | Senior Credit Analyst, Financial Health  | Cardiff, London or Remote (UK) | [Apply](https://job-boards.greenhouse.io/monzo/jobs/7317287) | ✅ |
@@ -20,7 +22,6 @@ Updated on 2026-03-05 02:38:15
 | Senior Data Scientist | Cardiff, London or Remote (UK) | [Apply](https://job-boards.greenhouse.io/monzo/jobs/6180814) | ✅ |
 | Senior Engineering Manager | Cardiff, London or Remote (UK) | [Apply](https://job-boards.greenhouse.io/monzo/jobs/6394676) | ✅ |
 | Senior Legal Counsel - Employment, Incentives & Pensions | London; Remote (UK) | [Apply](https://job-boards.greenhouse.io/monzo/jobs/6804239) | ✅ |
-| Senior Platform Engineer, Machine Learning | Cardiff, London or Remote (UK); London | [Apply](https://job-boards.greenhouse.io/monzo/jobs/7118972) | ✅ |
 | Senior Staff Machine Learning Scientist, Operations | London | [Apply](https://job-boards.greenhouse.io/monzo/jobs/6883842) | ✅ |
 | Staff Backend Engineer  | Cardiff, London or Remote (UK) | [Apply](https://job-boards.greenhouse.io/monzo/jobs/6636147) | ✅ |
 | Staff Software Engineer, Product Integrity | Cardiff, London or Remote (UK) | [Apply](https://job-boards.greenhouse.io/monzo/jobs/7610052) | ✅ |
