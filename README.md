@@ -4,13 +4,12 @@
 
 <!-- START OF JOB LISTINGS -->
 # Visa Sponsorship Jobs at Monzo
-Updated on 2026-05-20 04:08:16
+Updated on 2026-05-21 04:17:05
 
 | Title | Location | Apply Link | Visa Sponsorship |
 |-------|----------|------------|------------------|
 | Backend Engineer III  | Cardiff, London or Remote (UK) | [Apply](https://job-boards.greenhouse.io/monzo/jobs/6635595) | ✅ |
 | Credit Analyst | Cardiff, London or Remote (UK) | [Apply](https://job-boards.greenhouse.io/monzo/jobs/6758600) | ✅ |
-| Data Scientist | London | [Apply](https://job-boards.greenhouse.io/monzo/jobs/5636930) | ✅ |
 | Engineering Director, Security | Cardiff, London or Remote (UK) | [Apply](https://job-boards.greenhouse.io/monzo/jobs/7912647) | ✅ |
 | Engineering Manager | Cardiff, London or Remote (UK) | [Apply](https://job-boards.greenhouse.io/monzo/jobs/5018066) | ✅ |
 | Finance Forecasting Modeller | UK | [Apply](https://job-boards.greenhouse.io/monzo/jobs/7904675) | ✅ |
