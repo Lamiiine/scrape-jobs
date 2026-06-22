@@ -4,7 +4,7 @@
 
 <!-- START OF JOB LISTINGS -->
 # Visa Sponsorship Jobs at Monzo
-Updated on 2026-06-21 04:57:08
+Updated on 2026-06-22 05:04:42
 
 | Title | Location | Apply Link | Visa Sponsorship |
 |-------|----------|------------|------------------|
@@ -17,7 +17,7 @@ Updated on 2026-06-21 04:57:08
 | IFRS9 Modeller | London | [Apply](https://job-boards.greenhouse.io/monzo/jobs/7768140) | ✅ |
 | Lead Analytics Engineer | Cardiff, London or Remote (UK) | [Apply](https://job-boards.greenhouse.io/monzo/jobs/7582354) | ✅ |
 | Lead Analytics Engineer, Borrowing | Cardiff, London or Remote (UK) | [Apply](https://job-boards.greenhouse.io/monzo/jobs/7873998) | ✅ |
-| Machine Learning Platform Engineer | Cardiff, London or Remote (UK); London | [Apply](https://job-boards.greenhouse.io/monzo/jobs/7118972) | ✅ |
+| ML/AI Platform Engineer | Cardiff, London or Remote (UK); London | [Apply](https://job-boards.greenhouse.io/monzo/jobs/8020007) | ✅ |
 | Product Director, Flex (Borrowing)  | London | [Apply](https://job-boards.greenhouse.io/monzo/jobs/7775842) | ✅ |
 | Senior Analytics Engineer | Cardiff, London or Remote (UK) | [Apply](https://job-boards.greenhouse.io/monzo/jobs/6076740) | ✅ |
 | Senior Backend Engineer | Cardiff, London or Remote (UK) | [Apply](https://job-boards.greenhouse.io/monzo/jobs/6635837) | ✅ |
