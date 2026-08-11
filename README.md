@@ -4,7 +4,7 @@
 
 <!-- START OF JOB LISTINGS -->
 # Visa Sponsorship Jobs at Monzo
-Updated on 2026-08-10 02:12:50
+Updated on 2026-08-11 02:06:46
 
 | Title | Location | Apply Link | Visa Sponsorship |
 |-------|----------|------------|------------------|
@@ -15,6 +15,7 @@ Updated on 2026-08-10 02:12:50
 | Engineering Director, EU | Cardiff, London or Remote (UK) | [Apply](https://job-boards.greenhouse.io/monzo/jobs/8025854) | ✅ |
 | Engineering Director, Security | Cardiff, London or Remote (UK) | [Apply](https://job-boards.greenhouse.io/monzo/jobs/7912647) | ✅ |
 | Finance Forecasting Modeller | UK | [Apply](https://job-boards.greenhouse.io/monzo/jobs/7904675) | ✅ |
+| Lead Data Scientist | Cardiff, London or Remote (UK) | [Apply](https://job-boards.greenhouse.io/monzo/jobs/6369658) | ✅ |
 | Lead Machine Learning Scientist, Customer Operations | Cardiff, London or Remote (UK) | [Apply](https://job-boards.greenhouse.io/monzo/jobs/8103509) | ✅ |
 | Lead Machine Learning Scientist, FinCrime | Cardiff, London or Remote (UK) | [Apply](https://job-boards.greenhouse.io/monzo/jobs/8050756) | ✅ |
 | Lead Machine Learning Scientist, Search | Cardiff, London or Remote (UK) | [Apply](https://job-boards.greenhouse.io/monzo/jobs/8041029) | ✅ |
@@ -23,6 +24,7 @@ Updated on 2026-08-10 02:12:50
 | Senior Backend Engineer | Cardiff, London or Remote (UK) | [Apply](https://job-boards.greenhouse.io/monzo/jobs/6635837) | ✅ |
 | Senior Credit Analyst | Cardiff, London or Remote (UK) | [Apply](https://job-boards.greenhouse.io/monzo/jobs/8098960) | ✅ |
 | Senior Credit Risk Manager, Credit Platform  | Remote (UK) | [Apply](https://job-boards.greenhouse.io/monzo/jobs/8092745) | ✅ |
+| Senior Data Scientist | Cardiff, London or Remote (UK) | [Apply](https://job-boards.greenhouse.io/monzo/jobs/6180814) | ✅ |
 | Senior Engineering Manager | Cardiff, London or Remote (UK) | [Apply](https://job-boards.greenhouse.io/monzo/jobs/6394676) | ✅ |
 | Senior Machine Learning Manager, Borrowing | Cardiff, London or Remote (UK) | [Apply](https://job-boards.greenhouse.io/monzo/jobs/7996955) | ✅ |
 | Senior Machine Learning Scientist, Borrowing | Cardiff, London or Remote (UK) | [Apply](https://job-boards.greenhouse.io/monzo/jobs/7686352) | ✅ |
