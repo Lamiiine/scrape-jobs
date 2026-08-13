@@ -4,12 +4,12 @@
 
 <!-- START OF JOB LISTINGS -->
 # Visa Sponsorship Jobs at Monzo
-Updated on 2026-08-12 02:24:24
+Updated on 2026-08-13 02:25:56
 
 | Title | Location | Apply Link | Visa Sponsorship |
 |-------|----------|------------|------------------|
 | Backend Engineer III  | Cardiff, London or Remote (UK) | [Apply](https://job-boards.greenhouse.io/monzo/jobs/6635595) | ✅ |
-| Credit Analyst | Cardiff, London or Remote (UK) | [Apply](https://job-boards.greenhouse.io/monzo/jobs/8098919) | ✅ |
+| Credit Analyst | London; Remote (UK) | [Apply](https://job-boards.greenhouse.io/monzo/jobs/8098919) | ✅ |
 | Credit Risk Director, Business Borrowing | Cardiff, London or Remote (UK) | [Apply](https://job-boards.greenhouse.io/monzo/jobs/8020414) | ✅ |
 | Credit Risk Manager, Portfolio Management | London; Remote (UK) | [Apply](https://job-boards.greenhouse.io/monzo/jobs/7991227) | ✅ |
 | Engineering Director, EU | Cardiff, London or Remote (UK) | [Apply](https://job-boards.greenhouse.io/monzo/jobs/8025854) | ✅ |
@@ -23,8 +23,8 @@ Updated on 2026-08-12 02:24:24
 | Product Director, Flex (Borrowing)  | London | [Apply](https://job-boards.greenhouse.io/monzo/jobs/7775842) | ✅ |
 | Senior Analytics Engineer | Cardiff, London or Remote (UK) | [Apply](https://job-boards.greenhouse.io/monzo/jobs/6076740) | ✅ |
 | Senior Backend Engineer | Cardiff, London or Remote (UK) | [Apply](https://job-boards.greenhouse.io/monzo/jobs/6635837) | ✅ |
-| Senior Credit Analyst | Cardiff, London or Remote (UK) | [Apply](https://job-boards.greenhouse.io/monzo/jobs/8098960) | ✅ |
-| Senior Credit Risk Manager, Credit Platform  | Remote (UK) | [Apply](https://job-boards.greenhouse.io/monzo/jobs/8092745) | ✅ |
+| Senior Credit Analyst | London; Remote (UK) | [Apply](https://job-boards.greenhouse.io/monzo/jobs/8098960) | ✅ |
+| Senior Credit Risk Manager, Credit Platform  | London; Remote (UK) | [Apply](https://job-boards.greenhouse.io/monzo/jobs/8092745) | ✅ |
 | Senior Data Scientist | Cardiff, London or Remote (UK) | [Apply](https://job-boards.greenhouse.io/monzo/jobs/6180814) | ✅ |
 | Senior Engineering Manager | Cardiff, London or Remote (UK) | [Apply](https://job-boards.greenhouse.io/monzo/jobs/6394676) | ✅ |
 | Senior Machine Learning Manager, Borrowing | Cardiff, London or Remote (UK) | [Apply](https://job-boards.greenhouse.io/monzo/jobs/7996955) | ✅ |
