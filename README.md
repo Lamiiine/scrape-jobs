@@ -4,7 +4,7 @@
 
 <!-- START OF JOB LISTINGS -->
 # Visa Sponsorship Jobs at Monzo
-Updated on 2026-08-26 01:42:09
+Updated on 2026-08-27 08:40:26
 
 | Title | Location | Apply Link | Visa Sponsorship |
 |-------|----------|------------|------------------|
@@ -26,6 +26,7 @@ Updated on 2026-08-26 01:42:09
 | Senior Engineering Manager | Cardiff, London or Remote (UK) | [Apply](https://job-boards.greenhouse.io/monzo/jobs/6394676) | ✅ |
 | Senior Machine Learning Manager, Borrowing | Cardiff, London or Remote (UK) | [Apply](https://job-boards.greenhouse.io/monzo/jobs/7996955) | ✅ |
 | Senior Machine Learning Scientist, Borrowing | Cardiff, London or Remote (UK) | [Apply](https://job-boards.greenhouse.io/monzo/jobs/7686352) | ✅ |
+| Senior Platform Engineer  | Cardiff, London or Remote (UK) | [Apply](https://job-boards.greenhouse.io/monzo/jobs/6699672) | ✅ |
 | Senior Product Director, Business Banking | London | [Apply](https://job-boards.greenhouse.io/monzo/jobs/7732437) | ✅ |
 | Senior Technical Program Manager | London | [Apply](https://job-boards.greenhouse.io/monzo/jobs/8083280) | ✅ |
 | Staff Analytics Engineer | Cardiff, London or Remote (UK) | [Apply](https://job-boards.greenhouse.io/monzo/jobs/8013699) | ✅ |
