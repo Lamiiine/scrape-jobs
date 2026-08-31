@@ -4,7 +4,7 @@
 
 <!-- START OF JOB LISTINGS -->
 # Visa Sponsorship Jobs at Monzo
-Updated on 2026-08-30 04:52:40
+Updated on 2026-08-31 04:56:29
 
 | Title | Location | Apply Link | Visa Sponsorship |
 |-------|----------|------------|------------------|
