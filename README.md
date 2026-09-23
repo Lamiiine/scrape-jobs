@@ -4,7 +4,7 @@
 
 <!-- START OF JOB LISTINGS -->
 # Visa Sponsorship Jobs at Monzo
-Updated on 2026-09-22 04:19:55
+Updated on 2026-09-23 04:16:58
 
 | Title | Location | Apply Link | Visa Sponsorship |
 |-------|----------|------------|------------------|
@@ -30,4 +30,5 @@ Updated on 2026-09-22 04:19:55
 | Senior Technical Program Manager | London | [Apply](https://job-boards.greenhouse.io/monzo/jobs/8083280) | ✅ |
 | Staff Analytics Engineer | Cardiff, London or Remote (UK) | [Apply](https://job-boards.greenhouse.io/monzo/jobs/8013699) | ✅ |
 | Staff Backend Engineer  | Cardiff, London or Remote (UK) | [Apply](https://job-boards.greenhouse.io/monzo/jobs/6636147) | ✅ |
+| Staff Technical Program Manager, Operations | London | [Apply](https://job-boards.greenhouse.io/monzo/jobs/8222576) | ✅ |
 <!-- END OF JOB LISTINGS -->
