@@ -4,7 +4,7 @@
 
 <!-- START OF JOB LISTINGS -->
 # Visa Sponsorship Jobs at Monzo
-Updated on 2026-10-01 05:17:30
+Updated on 2026-10-02 05:05:48
 
 | Title | Location | Apply Link | Visa Sponsorship |
 |-------|----------|------------|------------------|
@@ -13,7 +13,7 @@ Updated on 2026-10-01 05:17:30
 | Credit Risk Manager, Portfolio Management | London; Remote (UK) | [Apply](https://job-boards.greenhouse.io/monzo/jobs/7991227) | ✅ |
 | Data Science Manager | Cardiff, London or Remote (UK) | [Apply](https://job-boards.greenhouse.io/monzo/jobs/7194922) | ✅ |
 | Data Science Manager,  Financial Crime  | Cardiff, London or Remote (UK) | [Apply](https://job-boards.greenhouse.io/monzo/jobs/5758065) | ✅ |
-| Data Scientist, L30 | Cardiff, London or Remote (UK) | [Apply](https://job-boards.greenhouse.io/monzo/jobs/8242603) | ✅ |
+| Data Scientist | Cardiff, London or Remote (UK) | [Apply](https://job-boards.greenhouse.io/monzo/jobs/8242603) | ✅ |
 | Director of Data, Payments | Cardiff, London or Remote (UK) | [Apply](https://job-boards.greenhouse.io/monzo/jobs/8146871) | ✅ |
 | Engineering Director, EU | Cardiff, London or Remote (UK) | [Apply](https://job-boards.greenhouse.io/monzo/jobs/8025854) | ✅ |
 | Engineering Manager | Cardiff, London or Remote (UK) | [Apply](https://job-boards.greenhouse.io/monzo/jobs/5018066) | ✅ |
@@ -22,6 +22,7 @@ Updated on 2026-10-01 05:17:30
 | Lead Machine Learning Scientist, Customer Operations | Cardiff, London or Remote (UK) | [Apply](https://job-boards.greenhouse.io/monzo/jobs/8103509) | ✅ |
 | Lead Machine Learning Scientist, FinCrime | Cardiff, London or Remote (UK) | [Apply](https://job-boards.greenhouse.io/monzo/jobs/8050756) | ✅ |
 | Lead Machine Learning Scientist, Search | Cardiff, London or Remote (UK) | [Apply](https://job-boards.greenhouse.io/monzo/jobs/8041029) | ✅ |
+| Product Director, Flex (Borrowing)  | London | [Apply](https://job-boards.greenhouse.io/monzo/jobs/7775842) | ✅ |
 | Senior Backend Engineer | Cardiff, London or Remote (UK) | [Apply](https://job-boards.greenhouse.io/monzo/jobs/6635837) | ✅ |
 | Senior Credit Risk Manager, Credit Platform  | London; Remote (UK) | [Apply](https://job-boards.greenhouse.io/monzo/jobs/8092745) | ✅ |
 | Senior Data Scientist | Cardiff, London or Remote (UK) | [Apply](https://job-boards.greenhouse.io/monzo/jobs/6180814) | ✅ |
