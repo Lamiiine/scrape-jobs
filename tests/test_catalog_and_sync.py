@@ -2,7 +2,7 @@ import unittest
 from datetime import date
 from pathlib import Path
 
-from scraper.catalog import expire_and_merge
+from scraper.catalog import expire_and_merge, select_board
 from scraper.models import Job
 from scraper.site_sync import patch_eleventy, patch_tree
 
@@ -62,6 +62,17 @@ class CatalogTests(unittest.TestCase):
         result = expire_and_merge(existing, [job()], date(2026, 11, 18))
         self.assertTrue(any(row["reason"] == "expired" for row in result["removed"]))
 
+    def test_jobs_older_than_90_days_are_not_published(self):
+        recent = job(posted_at="2026-11-18T16:26:55Z", post_date="2026-11-18")
+        stale = job(
+            position="Ancient Role",
+            apply_url="https://job-boards.greenhouse.io/monzo/jobs/9",
+            post_date="2023-04-28",
+            posted_at="2023-04-28T08:00:00Z",
+        )
+        chosen = select_board([recent, stale], today=date(2026, 11, 18))
+        self.assertEqual([item.position for item in chosen], ["Backend Engineer"])
+
     def test_same_url_is_refreshed_not_duplicated(self):
         existing = [job(sponsorship_quote="old").to_site()]
         fresh = job(sponsorship_quote="We can sponsor visas now.")
@@ -85,6 +96,8 @@ class SiteSyncTests(unittest.TestCase):
         self.assertNotIn('"EU"', patched)
         self.assertIn('return codes[country] || "";', patched)
         self.assertIn("date.getDate() + 45", patched)
+        self.assertIn('dateStr + "T12:00:00Z"', patch_eleventy('const normalized = dateStr + "T12:00:00";'))
+        self.assertIn("job.country", patch_eleventy("const country = parts[parts.length - 1].trim();"))
         self.assertIn('"United States": "US"', patched)
         self.assertIn('addFilter("employmentType"', patched)
         self.assertEqual(patched.count('addFilter("employmentType"'), 1)

@@ -115,14 +115,67 @@ class Evidence:
         return self.level in ("confirmed", "likely")
 
 
-def strip_html(value: str) -> str:
+BLOCK_RE = re.compile(r"</(?:p|div|h[1-6]|li|tr|blockquote|section)>|<br\s*/?>", re.I)
+LI_OPEN_RE = re.compile(r"<li[^>]*>", re.I)
+
+
+def html_to_text(value: str) -> str:
+    """Turn ATS HTML into paragraphs.
+
+    Greenhouse returns the description already entity-encoded (``&lt;p&gt;``),
+    so the text is unescaped twice before tags are removed.
+    """
     text = value or ""
-    text = text.replace("\xa0", " ").replace("&nbsp;", " ").replace("&#39;", "'")
+    text = text.replace("\xa0", " ").replace("&nbsp;", " ").replace("&#160;", " ").replace("&#39;", "'")
     text = unescape(unescape(text))
     text = text.replace("\xa0", " ")
+    text = LI_OPEN_RE.sub("\n• ", text)
+    text = BLOCK_RE.sub("\n", text)
     text = TAG_RE.sub(" ", text)
-    text = WS_RE.sub(" ", text)
-    return text.strip()
+    lines: list[str] = []
+    blank = False
+    for raw_line in text.split("\n"):
+        line = WS_RE.sub(" ", raw_line).strip()
+        if not line:
+            if lines and not blank:
+                lines.append("")
+            blank = True
+            continue
+        blank = False
+        lines.append(line)
+    return "\n".join(lines).strip()
+
+
+def strip_html(value: str) -> str:
+    return WS_RE.sub(" ", html_to_text(value)).strip()
+
+
+def excerpt(value: str, limit: int = 280) -> str:
+    flat = WS_RE.sub(" ", (value or "").replace("\n", " ")).strip()
+    if len(flat) <= limit:
+        return flat
+    cut = flat[:limit].rsplit(" ", 1)[0].rstrip(".,;: ")
+    return (cut or flat[:limit].rstrip()) + "…"
+
+
+ROLE_HEAD_RE = re.compile(
+    r"^(about the role|the role|what you (?:will|['’]ll) do|responsibilities)\b",
+    re.I,
+)
+
+
+def opening_excerpt(value: str, limit: int = 280) -> str:
+    """Card text from the role section, not the company-mission boilerplate."""
+    paragraphs = [part.strip() for part in (value or "").split("\n\n") if part.strip()]
+    for index, paragraph in enumerate(paragraphs):
+        head = paragraph.split("\n", 1)[0].strip(" :")
+        if ROLE_HEAD_RE.match(head) and index + 1 < len(paragraphs):
+            return excerpt(paragraphs[index + 1], limit)
+    for paragraph in paragraphs:
+        if re.match(r"^about\s+\S+$", paragraph, re.I) and len(paragraph) < 40:
+            continue
+        return excerpt(paragraph, limit)
+    return excerpt(value, limit)
 
 
 def _sentences(text: str) -> list[str]:
@@ -155,7 +208,7 @@ def classify(text: str, company: str = "", known_sponsors: set[str] | None = Non
     ``known_sponsors`` holds ``company_key`` values. A match without an explicit
     refusal is ``likely``. An explicit refusal blocks ``likely``.
     """
-    plain = strip_html(text)
+    plain = html_to_text(text)
     sentences = _sentences(plain) or [plain]
     confirmed_quote = ""
     denial = False

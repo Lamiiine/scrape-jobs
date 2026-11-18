@@ -13,6 +13,8 @@ MAX_BOARD = 350
 MAX_PER_COMPANY = 40
 # Refuse to replace the live board when a scrape clearly failed.
 MIN_PUBLISH = 40
+# A requisition that has been open for a quarter is not a daily listing.
+MAX_AGE_DAYS = 90
 
 
 def dedupe(jobs: list[Job]) -> list[Job]:
@@ -26,7 +28,7 @@ def dedupe(jobs: list[Job]) -> list[Job]:
         jobs,
         key=lambda job: (
             0 if job.sponsorship_evidence == "confirmed" else 1,
-            _invert_date(job.post_date),
+            _invert_date(job.posted_at or job.post_date),
         ),
     )
     for job in ranked:
@@ -46,9 +48,30 @@ def _invert_date(value: str) -> str:
     return "".join(chr(ord("9") - (ord(ch) - ord("0"))) if ch.isdigit() else ch for ch in value)
 
 
-def select_board(jobs: list[Job], limit: int = MAX_BOARD, per_company: int = MAX_PER_COMPANY) -> list[Job]:
-    unique = dedupe(jobs)
-    unique.sort(key=lambda job: job.post_date, reverse=True)
+def fresh_jobs(jobs: list[Job], today: date, max_age_days: int = MAX_AGE_DAYS) -> tuple[list[Job], int]:
+    """Drop postings with no timestamp or older than ``max_age_days``."""
+    kept: list[Job] = []
+    dropped = 0
+    for job in jobs:
+        posted = parse_iso(job.posted_at or job.post_date)
+        if posted is None or (today - posted).days > max_age_days:
+            dropped += 1
+            continue
+        kept.append(job)
+    return kept, dropped
+
+
+def select_board(
+    jobs: list[Job],
+    limit: int = MAX_BOARD,
+    per_company: int = MAX_PER_COMPANY,
+    today: date | None = None,
+    max_age_days: int = MAX_AGE_DAYS,
+) -> list[Job]:
+    today = today or date.today()
+    recent, _dropped = fresh_jobs(jobs, today, max_age_days)
+    unique = dedupe(recent)
+    unique.sort(key=lambda job: job.posted_at or job.post_date, reverse=True)
     confirmed = [job for job in unique if job.sponsorship_evidence == "confirmed"]
     likely = [job for job in unique if job.sponsorship_evidence == "likely"]
     chosen: list[Job] = []
@@ -61,7 +84,7 @@ def select_board(jobs: list[Job], limit: int = MAX_BOARD, per_company: int = MAX
         chosen.append(job)
         if len(chosen) >= limit:
             break
-    chosen.sort(key=lambda job: job.post_date, reverse=True)
+    chosen.sort(key=lambda job: job.posted_at or job.post_date, reverse=True)
     return chosen
 
 
@@ -77,7 +100,7 @@ def expire_and_merge(existing: list[dict], fresh: list[Job], today: date) -> dic
     today's scrape still selects it, so the per-company cap cannot drift as
     older postings remain inside their ``valid_through`` window.
     """
-    desired_jobs = select_board(fresh)
+    desired_jobs = select_board(fresh, today=today)
     desired = [job.to_site() for job in desired_jobs]
     desired_urls = {canonical_url(row["apply_url"]): row for row in desired}
     existing_urls: set[str] = set()

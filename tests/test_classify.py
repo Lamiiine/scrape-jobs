@@ -1,6 +1,6 @@
 import unittest
 
-from scraper.classify import classify
+from scraper.classify import classify, excerpt, html_to_text, opening_excerpt
 
 
 class ClassifyTests(unittest.TestCase):
@@ -53,6 +53,23 @@ class ClassifyTests(unittest.TestCase):
         result = classify("Backend engineer in London.", company="Monzo", known_sponsors={"monzo"})
         self.assertEqual(result.level, "likely")
         self.assertIn("known-sponsor", result.quote)
+
+    def test_greenhouse_escaped_html_keeps_paragraphs_and_the_offer(self):
+        raw = (
+            "&lt;h2&gt;About&lt;/h2&gt;&lt;p&gt;Visa sponsorship:&amp;nbsp;We do sponsor visas!&lt;/p&gt;"
+            "&lt;p&gt;However, we aren't able to successfully sponsor visas for every role.&lt;/p&gt;"
+        )
+        text = html_to_text(raw)
+        self.assertNotIn("&lt;", text)
+        self.assertNotIn("&nbsp;", text)
+        self.assertIn("\n", text)
+        self.assertIn("We do sponsor visas", text)
+        result = classify(raw, company="Anthropic")
+        self.assertEqual(result.level, "confirmed")
+        self.assertIn("We do sponsor visas", result.quote)
+        self.assertLessEqual(len(excerpt(text, limit=40)), 41)
+        card = opening_excerpt("About Anthropic\n\nMission statement that is boilerplate.\n\nAbout the role\n\nAs an engineer you will advise customers.")
+        self.assertTrue(card.startswith("As an engineer"))
 
     def test_known_sponsor_refusal_is_not_likely(self):
         result = classify(

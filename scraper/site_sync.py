@@ -59,6 +59,45 @@ INDEX_TITLE_NEW = 'title: "Visa Sponsorship Jobs"'
 INDEX_DESC_OLD = 'description: "Browse 270+ verified tech jobs with visa sponsorship and relocation assistance. Companies like Stripe, Revolut, Cloudflare, and Spotify are hiring now. Updated weekly."'
 INDEX_DESC_NEW = 'description: "Tech jobs whose postings or a known sponsor list show visa sponsorship. Relocation assistance is listed only when the posting says so."'
 
+TIME_OLD = "{{ job.post_date | timeAgo }}"
+TIME_NEW = (
+    '{% set postedAt = job.posted_at or job.post_date %}'
+    '<time class="js-timeago" datetime="{{ postedAt }}" title="{{ postedAt }}">'
+    "{{ postedAt | timeAgo }}</time>"
+)
+
+DATE_ATTR_OLD = 'data-date="{{ job.post_date }}"'
+DATE_ATTR_NEW = (
+    'data-date="{{ job.posted_at or job.post_date }}" '
+    'data-country="{{ job.country | lower }}" '
+    'data-excerpt="{{ job.excerpt | lower }}"'
+)
+
+EXCERPT_HTML = '{% if job.excerpt %}<p class="text-sm text-gray-600 dark:text-gray-400 mb-3">{{ job.excerpt }}</p>{% endif %}'
+
+NOON_OLD = 'dateStr + "T12:00:00"'
+NOON_NEW = 'dateStr + "T12:00:00Z"'
+NOON_JS_OLD = 'dateString + "T12:00:00"'
+NOON_JS_NEW = 'dateString + "T12:00:00Z"'
+
+COUNTRY_LINE_OLD = "const country = parts[parts.length - 1].trim();"
+COUNTRY_LINE_NEW = 'const country = (job.country || "").trim() || parts[parts.length - 1].trim();'
+
+SEARCH_OLD = """      var searchable = (card.dataset.position || '') + ' ' +
+                       (card.dataset.company || '') + ' ' +
+                       (card.dataset.location || '');
+      var matchesSearch = !query || tokenMatch(searchable, query);
+      var matchesCountry = !country || (card.dataset.location || '').includes(country);"""
+SEARCH_NEW = """      var searchable = (card.dataset.position || '') + ' ' +
+                       (card.dataset.company || '') + ' ' +
+                       (card.dataset.location || '') + ' ' +
+                       (card.dataset.excerpt || '');
+      var matchesSearch = !query || tokenMatch(searchable, query);
+      var matchesCountry = !country || (card.dataset.country || card.dataset.location || '').includes(country);"""
+
+MAIN_JS_TAG = '  <script src="/assets/js/main.js"></script>'
+TIMEAGO_TAG = MAIN_JS_TAG + '\n  <script src="/assets/js/timeago.js"></script>'
+
 
 def patch_eleventy(text: str) -> str:
     updated = text.replace(ELE_OLD_DEFAULT, ELE_NEW_DEFAULT)
@@ -71,6 +110,7 @@ def patch_eleventy(text: str) -> str:
         needle = 'eleventyConfig.addFilter("limit"'
         if needle in updated:
             updated = updated.replace(needle, EMPLOYMENT_FILTER + "\n  " + needle, 1)
+    updated = updated.replace(NOON_OLD, NOON_NEW).replace(COUNTRY_LINE_OLD, COUNTRY_LINE_NEW)
     return updated
 
 
@@ -115,10 +155,45 @@ def patch_tree(root: Path) -> list[str]:
             patched = patched.replace(INDEX_TITLE_OLD, INDEX_TITLE_NEW)
             patched = patched.replace(INDEX_DESC_OLD, INDEX_DESC_NEW)
             patched = _patch_index_schema(patched)
+        patched = patch_markup(patched)
         if patched != original:
             path.write_text(patched, encoding="utf-8")
             changed.append(str(path.relative_to(root)))
+
+    main_js = root / "src" / "assets" / "js" / "main.js"
+    if main_js.exists():
+        current = main_js.read_text(encoding="utf-8")
+        fixed = current.replace(NOON_OLD, NOON_NEW).replace(NOON_JS_OLD, NOON_JS_NEW)
+        if fixed != current:
+            main_js.write_text(fixed, encoding="utf-8")
+            changed.append(str(main_js.relative_to(root)))
+
+    base = root / "src" / "_includes" / "layouts" / "base.njk"
+    if base.exists():
+        current = base.read_text(encoding="utf-8")
+        if "timeago.js" not in current and MAIN_JS_TAG in current:
+            base.write_text(current.replace(MAIN_JS_TAG, TIMEAGO_TAG, 1), encoding="utf-8")
+            changed.append(str(base.relative_to(root)))
     return changed
+
+
+def patch_markup(text: str) -> str:
+    if "js-timeago" not in text:
+        text = text.replace(TIME_OLD, TIME_NEW)
+    if "data-excerpt" not in text:
+        text = text.replace(DATE_ATTR_OLD, DATE_ATTR_NEW)
+    if 'class="job-card"' in text and "job.excerpt" not in text:
+        text = text.replace(
+            '<div class="flex flex-wrap gap-2">',
+            EXCERPT_HTML + '\n            <div class="flex flex-wrap gap-2">',
+        )
+    if "dataset.excerpt" not in text:
+        text = text.replace(SEARCH_OLD, SEARCH_NEW)
+    text = text.replace(
+        '"datePosted": "{{ job.post_date | isoDate }}",',
+        '"datePosted": "{{ job.posted_at or (job.post_date | isoDate) }}",',
+    )
+    return text
 
 
 def _patch_index_schema(text: str) -> str:
@@ -129,7 +204,11 @@ def _patch_index_schema(text: str) -> str:
     )
     text = text.replace(
         '"datePosted": "{{ job.post_date }}",',
+        '"datePosted": "{{ job.posted_at or (job.post_date | isoDate) }}",',
+    )
+    text = text.replace(
         '"datePosted": "{{ job.post_date | isoDate }}",',
+        '"datePosted": "{{ job.posted_at or (job.post_date | isoDate) }}",',
     )
     text = text.replace(
         '"title": "{{ job.position }}",',
@@ -137,7 +216,7 @@ def _patch_index_schema(text: str) -> str:
     )
     text = text.replace(
         '"description": "{{ job.position }} at {{ job.company }} — {{ job.location }}. See the employer listing for visa sponsorship and relocation details.",',
-        '"description": {{ (job.summary or (job.position ~ " at " ~ job.company)) | jsonify | safe }},',
+        '"description": {{ (job.body or job.summary or (job.position ~ " at " ~ job.company)) | jsonify | safe }},',
     )
     text = text.replace(
         "{{ jobs | length }}+ opportunities with visa sponsorship and relocation assistance",

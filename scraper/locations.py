@@ -145,6 +145,8 @@ CITY_COUNTRY = {
     "remote": ("Remote", "", ""),
 }
 
+_STATE_BY_NAME = {name.lower(): abbr.upper() for abbr, name in US_STATES.items()}
+
 CODE_TO_NAME = {}
 for _name, _code in COUNTRY_CODES.items():
     CODE_TO_NAME.setdefault(_code, _name.title() if len(_name) > 3 else _name.upper())
@@ -246,6 +248,14 @@ def parse_location(raw: str, address: dict | None = None) -> Address:
             if len(part) == 2 and part.lower() in US_STATES:
                 region = part.upper()
                 code, country_name = "US", "United States"
+                break
+    if not region:
+        for part in parts:
+            abbr = _STATE_BY_NAME.get(part.lower())
+            if abbr:
+                region = abbr
+                if not code:
+                    code, country_name = "US", "United States"
                 break
     if not code:
         for part in reversed(parts):

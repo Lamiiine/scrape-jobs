@@ -4,6 +4,7 @@ from datetime import date
 from scraper.locations import parse_location
 from scraper.models import valid_through
 from scraper.salary import parse_salary
+from scraper.sources import _iso_stamp
 from scraper.urls import canonical_url, choose_apply_url, is_competitor, is_direct
 
 
@@ -32,7 +33,21 @@ class UrlTests(unittest.TestCase):
         self.assertNotIn("utm_source", url)
 
 
+class StampTests(unittest.TestCase):
+    def test_offset_is_kept_as_utc(self):
+        self.assertEqual(_iso_stamp("2026-11-18T11:26:55-05:00"), "2026-11-18T16:26:55Z")
+
+    def test_date_only_is_noon_utc_not_local(self):
+        self.assertEqual(_iso_stamp("2026-11-18"), "2026-11-18T12:00:00Z")
+
+
 class LocationTests(unittest.TestCase):
+    def test_california_is_a_region_not_a_country(self):
+        parsed = parse_location("San Francisco, California, United States")
+        self.assertEqual(parsed.country_code, "US")
+        self.assertEqual(parsed.region, "CA")
+        self.assertEqual(parsed.locality, "San Francisco")
+
     def test_berlin_is_germany_not_eu(self):
         parsed = parse_location("Berlin")
         self.assertEqual(parsed.country_code, "DE")

@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+import re
 from dataclasses import dataclass, field
 from datetime import date, timedelta
 
@@ -28,17 +29,32 @@ class Job:
     address: dict = field(default_factory=dict)
     salary: dict | None = None
     relocation_quote: str = ""
+    posted_at: str = ""
+    updated_at: str = ""
+    body: str = ""
+    excerpt: str = ""
+    department: str = ""
+    deadline: str = ""
+    country: str = ""
 
     def to_site(self) -> dict:
-        """Shape expected by the Eleventy site. ``description`` stays the apply URL."""
+        """Shape expected by the Eleventy site.
+
+        ``description`` stays the apply URL because existing templates use it
+        as the link. The posting text lives in ``body``. ``posted_at`` is the
+        employer timestamp; ``post_date`` is that same instant's calendar day.
+        """
         record = {
             "company": _plain(self.company),
             "position": _plain(self.position),
             "location": _plain(self.location),
+            "country": _plain(self.country),
             "contract": _plain(self.contract),
             "reloc": _plain(self.reloc),
             "visa": _plain(self.visa),
             "post_date": self.post_date,
+            "posted_at": self.posted_at or (f"{self.post_date}T12:00:00Z" if self.post_date else ""),
+            "updated_at": self.updated_at,
             "valid_through": self.valid_through,
             "logo": "",
             "description": self.apply_url,
@@ -46,6 +62,8 @@ class Job:
             "sponsorship_evidence": self.sponsorship_evidence,
             "sponsorship_quote": _plain(self.sponsorship_quote),
             "summary": _plain(self.summary),
+            "body": _body(self.body),
+            "excerpt": _plain(self.excerpt),
             "address": {
                 key: _plain(value) if isinstance(value, str) else value
                 for key, value in (self.address or {}).items()
@@ -53,6 +71,10 @@ class Job:
             "source": self.source,
             "link_status": self.link_status,
         }
+        if self.department:
+            record["department"] = _plain(self.department)
+        if self.deadline:
+            record["deadline"] = self.deadline
         if self.relocation_quote:
             record["relocation_quote"] = _plain(self.relocation_quote)
         if self.salary:
@@ -65,6 +87,16 @@ class Job:
 
 def _plain(value: str) -> str:
     return (value or "").replace("<", "").replace(">", "").replace("\r", " ").replace("\n", " ").strip()
+
+
+def _body(value: str) -> str:
+    text = (value or "").replace("\r\n", "\n").replace("\r", "\n").replace("<", "").replace(">", "")
+    lines = [re.sub(r"[ \t]+", " ", line).strip() for line in text.split("\n")]
+    # Re-import locally to avoid a cycle; models stays free of the classifier.
+    cleaned = "\n".join(lines)
+    while "\n\n\n" in cleaned:
+        cleaned = cleaned.replace("\n\n\n", "\n\n")
+    return cleaned.strip()
 
 
 def visa_label(level: str) -> str:

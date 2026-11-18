@@ -18,8 +18,8 @@ eleventyComputed:
   "@context": "https://schema.org",
   "@type": "JobPosting",
   "title": {{ job.position | jsonify | safe }},
-  "description": {{ (job.summary or job.sponsorship_quote or job.position) | jsonify | safe }},
-  "datePosted": "{{ job.post_date | isoDate }}",
+  "description": {{ (job.body or job.summary or job.sponsorship_quote or job.position) | jsonify | safe }},
+  "datePosted": "{{ job.posted_at or (job.post_date | isoDate) }}",
   "validThrough": "{{ job.valid_through or (job.post_date | validThrough) }}",
   {% if emp %}"employmentType": "{{ emp }}",{% endif %}
   "directApply": false,
@@ -77,8 +77,15 @@ eleventyComputed:
               </span>
               <span class="flex items-center gap-1">
                 <i data-lucide="calendar" class="w-4 h-4"></i>
-                Posted {{ job.post_date | timeAgo }}
+                Posted {% set postedAt = job.posted_at or job.post_date %}<time class="js-timeago" datetime="{{ postedAt }}" title="{{ postedAt }}">{{ postedAt | timeAgo }}</time>
+                <span class="text-gray-400">· {{ job.post_date }}</span>
               </span>
+              {% if job.updated_at and job.updated_at.slice(0,10) != job.post_date %}
+              <span class="flex items-center gap-1">
+                <i data-lucide="refresh-cw" class="w-4 h-4"></i>
+                Updated <time class="js-timeago" datetime="{{ job.updated_at }}" title="{{ job.updated_at }}">{{ job.updated_at | timeAgo }}</time>
+              </span>
+              {% endif %}
               {% if job.valid_through %}
               <span class="flex items-center gap-1">
                 <i data-lucide="calendar-clock" class="w-4 h-4"></i>
@@ -97,7 +104,7 @@ eleventyComputed:
           </div>
           <div>
             <p class="text-xs text-gray-500 dark:text-gray-400">Job Type</p>
-            <p class="text-sm font-semibold text-gray-900 dark:text-white">{{ job.contract or "Not specified" }}</p>
+            <p class="text-sm font-semibold text-gray-900 dark:text-white">{{ job.contract or "Not specified" }}{% if job.department %} · {{ job.department }}{% endif %}</p>
           </div>
         </div>
         <div class="flex items-center gap-3">
@@ -120,6 +127,10 @@ eleventyComputed:
         </div>
       </div>
 
+      {% if job.deadline %}
+      <p class="text-sm text-gray-700 dark:text-gray-300 pb-2">Apply by {{ job.deadline }}</p>
+      {% endif %}
+
       {% if job.salary and job.salary.min %}
       <p class="text-sm text-gray-700 dark:text-gray-300 pb-4">
         Salary: {{ job.salary.currency }} {{ job.salary.min }}{% if job.salary.max %}–{{ job.salary.max }}{% endif %}
@@ -139,9 +150,23 @@ eleventyComputed:
       </div>
     </div>
 
+    {% if job.body %}
     <div class="card p-6 sm:p-8 mb-8">
       <h2 class="text-lg font-bold text-gray-900 dark:text-white mb-4 flex items-center gap-2">
         <i data-lucide="file-text" class="w-5 h-5 text-brand-500"></i>
+        Job description
+      </h2>
+      <div class="text-sm text-gray-700 dark:text-gray-300 leading-relaxed space-y-3">
+        {% for para in job.body.split("\n\n") %}
+          {% if para.trim() %}<p class="whitespace-pre-line">{{ para }}</p>{% endif %}
+        {% endfor %}
+      </div>
+    </div>
+    {% endif %}
+
+    <div class="card p-6 sm:p-8 mb-8">
+      <h2 class="text-lg font-bold text-gray-900 dark:text-white mb-4 flex items-center gap-2">
+        <i data-lucide="shield-check" class="w-5 h-5 text-brand-500"></i>
         Sponsorship evidence
       </h2>
       <div class="prose-custom text-sm text-gray-600 dark:text-gray-400 leading-relaxed space-y-4">

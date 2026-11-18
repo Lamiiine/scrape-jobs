@@ -6,7 +6,7 @@ import json
 from datetime import datetime, timezone
 from pathlib import Path
 
-from scraper.catalog import select_board
+from scraper.catalog import fresh_jobs, select_board
 from scraper.liveness import check_many
 from scraper.models import Job
 from scraper.sources import fetch_all
@@ -37,12 +37,18 @@ def scrape(skip_live: bool = False) -> tuple[list[Job], list[str]]:
             alive.append(job)
         print(f"Dropped {dead} dead apply links; {len(alive)} remain")
         jobs = alive
-    board = select_board(jobs)
+    today = datetime.now(timezone.utc).date()
+    jobs, stale = fresh_jobs(jobs, today)
+    print(f"Dropped {stale} jobs older than 90 days or missing a posted time")
+    board = select_board(jobs, today=today)
     counts = _counts(board)
+    described = sum(1 for job in board if job.body)
+    newest = max((job.posted_at for job in board), default="")
     print(
         f"Board: {len(board)} jobs "
         f"({counts['confirmed']} confirmed, {counts['likely']} likely, "
-        f"{counts['with_salary']} with salary, {counts['with_relocation']} with relocation)"
+        f"{counts['with_salary']} with salary, {counts['with_relocation']} with relocation, "
+        f"{described} with a description, newest {newest})"
     )
     return board, errors
 
@@ -81,15 +87,16 @@ def _write_readme(jobs: list[Job]) -> None:
         "Only jobs with `sponsorship_evidence` of `confirmed` or `likely` are included.",
         "Apply links are employer or ATS URLs. Competitor boards are not used.",
         "",
-        "| Title | Company | Location | Evidence | Valid through | Apply |",
-        "|-------|---------|----------|----------|---------------|-------|",
+        "| Title | Company | Location | Posted | Evidence | Apply |",
+        "|-------|---------|----------|--------|----------|-------|",
     ]
     for job in jobs[:40]:
         title = job.position.replace("|", "/")
         company = job.company.replace("|", "/")
         location = job.location.replace("|", "/")
+        posted = job.posted_at or job.post_date
         lines.append(
-            f"| {title} | {company} | {location} | {job.sponsorship_evidence} | {job.valid_through} | [Apply]({job.apply_url}) |"
+            f"| {title} | {company} | {location} | {posted} | {job.sponsorship_evidence} | [Apply]({job.apply_url}) |"
         )
     if len(jobs) > 40:
         lines.append("")
