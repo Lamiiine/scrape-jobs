@@ -1,41 +1,43 @@
 name: Daily Job Scraper
 
 on:
-  push:
-    branches:
-      - main  # Triggers the workflow on pushes to the 'main' branch
+  workflow_dispatch:
   schedule:
-    - cron: '0 0 * * *'  # Runs daily at midnight UTC
+    # 06:00 UTC. ubuntu-latest is Ubuntu 26.04; do not pin Python 3.9.
+    - cron: "0 6 * * *"
+
+permissions:
+  contents: write
 
 jobs:
   scrape-and-update:
     runs-on: ubuntu-latest
-
+    timeout-minutes: 45
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - name: Set up Python
-        uses: actions/setup-python@v4
+        uses: actions/setup-python@v5
         with:
-          python-version: '3.9'
+          # 3.12.x is published for Ubuntu 26.04. 3.9 is not, which is why
+          # the 18 Nov 2026 run died in setup-python before scrape.py started.
+          python-version: "3.12"
 
-      - name: Install dependencies
-        run: pip install requests
-
-      - name: Run scraper
+      - name: Run scraper and publish to visajobs.xyz
+        env:
+          SITE_GITHUB_TOKEN: ${{ secrets.SITE_GITHUB_TOKEN }}
+          SITE_REPO: relocate-with-us/relocate-with-us.github.io
         run: python scrape.py
 
-      - name: Commit and push changes
+      - name: Commit scraper output
         run: |
-          git config --local user.name "github-actions[bot]"
-          git config --local user.email "github-actions[bot]@users.noreply.github.com"
-          git stash --include-untracked # Stash unstaged changes, including untracked files
-          git pull --rebase origin main  # Pull latest changes and rebase
-          git stash pop || echo "No changes to pop" # Reapply stashed changes
-          git add README.md  # Stage the modified README.md
-          git commit -m "Update visa sponsorship jobs" || echo "No changes to commit"
-          git push origin main
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add README.md data/latest-jobs.json
+          if git diff --cached --quiet; then
+            echo "No changes to commit"
+          else
+            git commit -m "Update visa sponsorship jobs"
+            git push
+          fi
