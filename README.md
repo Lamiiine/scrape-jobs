@@ -15,12 +15,12 @@ The site update runs only when the Actions secret `SITE_GITHUB_TOKEN` is set. Wi
 <!-- START OF JOB LISTINGS -->
 # Visa sponsorship jobs
 
-Updated on 2026-11-18 17:44:38 UTC
+Updated on 2026-11-18 21:34:23 UTC
 
-- Listings: **95**
+- Listings: **94**
 - Sponsorship evidence confirmed: **67**
-- Sponsorship evidence likely (known sponsor list): **28**
-- With a salary range: **37**
+- Sponsorship evidence likely (known sponsor list): **27**
+- With a salary range: **36**
 - With relocation assistance in the posting: **26**
 
 Only jobs with `sponsorship_evidence` of `confirmed` or `likely` are included.
@@ -69,8 +69,9 @@ Apply links are employer or ATS URLs. Competitor boards are not used.
 | Tech Lead Manager, Growth Data Science | Anthropic | San Francisco, CA, United States | 2026-11-12T21:54:18Z | confirmed | [Apply](https://job-boards.greenhouse.io/anthropic/jobs/5478799008) |
 | Resale Operations Lead | Anthropic | San Francisco, CA, United States | 2026-11-12T20:18:09Z | confirmed | [Apply](https://job-boards.greenhouse.io/anthropic/jobs/5468548008) |
 
-_Showing 40 of 95. The full catalog is `data/latest-jobs.json`._
+_Showing 40 of 94. The full catalog is `data/latest-jobs.json`._
 <!-- END OF JOB LISTINGS -->
+
 
 
 
