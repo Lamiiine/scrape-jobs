@@ -1,63 +1,41 @@
-import requests
-from datetime import datetime
+#!/usr/bin/env python3
+"""Daily visa-sponsorship scraper.
 
-# Define the company job board token
-board_token = 'monzo'
+Writes data/latest-jobs.json and, when SITE_GITHUB_TOKEN is set, updates
+relocate-with-us/relocate-with-us.github.io (new jobs, expired jobs, templates).
+"""
 
-# API endpoint with content parameter set to true
-url = f'https://boards-api.greenhouse.io/v1/boards/{board_token}/jobs?content=true'
+from __future__ import annotations
 
-# Make the GET request to the API
-response = requests.get(url)
-jobs = response.json()
+import argparse
+import sys
 
-# Phrase to identify visa sponsorship
-visa_phrase = "We can sponsor visas"
+from scraper.pipeline import scrape, write_outputs
+from scraper.publish import publish_jobs
 
-# Collect job data for Markdown
-job_data = []
 
-for job in jobs['jobs']:
-    title = job.get('title', 'N/A')
-    location = job.get('location', {}).get('name', 'N/A')
-    description = job.get('content', 'No description available')
-    apply_link = job.get('absolute_url', 'No apply link available')
+def main(argv: list[str] | None = None) -> int:
+    parser = argparse.ArgumentParser(description="Scrape evidenced visa-sponsorship jobs")
+    parser.add_argument("--skip-live", action="store_true", help="Skip HTTP checks of apply URLs")
+    parser.add_argument("--no-publish", action="store_true", help="Do not try to update the site repo")
+    parser.add_argument("--dry-run", action="store_true", help="Scrape and print counts only")
+    args = parser.parse_args(argv)
 
-    # Check for the exact visa sponsorship phrase in the description
-    if visa_phrase.lower() in description.lower():
-        visa_support = "✅"
-        job_data.append((title, location, apply_link, visa_support))
+    jobs, errors = scrape(skip_live=args.skip_live)
+    print(f"Source errors: {len(errors)}")
+    for error in errors:
+        print(f"  {error}")
+    if not jobs:
+        print("No evidenced jobs. Refusing to update catalogs.")
+        return 1
+    if args.dry_run:
+        return 0
+    write_outputs(jobs)
+    if args.no_publish:
+        return 0
+    publish_jobs(jobs)
+    return 0
 
-# Generate the new job listings section
-new_section = []
-new_section.append("<!-- START OF JOB LISTINGS -->")
-new_section.append("# Visa Sponsorship Jobs at Monzo")
-new_section.append(f"Updated on {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}\n")
-new_section.append("| Title | Location | Apply Link | Visa Sponsorship |")
-new_section.append("|-------|----------|------------|------------------|")
 
-for title, location, apply_link, visa_support in job_data:
-    new_section.append(f"| {title} | {location} | [Apply]({apply_link}) | {visa_support} |")
-
-new_section.append("<!-- END OF JOB LISTINGS -->")
-
-# Read the existing README.md
-with open("README.md", "r") as file:
-    content = file.read()
-
-# Replace the old section with the new section
-start_marker = "<!-- START OF JOB LISTINGS -->"
-end_marker = "<!-- END OF JOB LISTINGS -->"
-
-start_index = content.find(start_marker)
-end_index = content.find(end_marker) + len(end_marker)
-
-if start_index != -1 and end_index != -1:
-    updated_content = content[:start_index] + "\n".join(new_section) + content[end_index:]
-else:
-    # If markers are not found, append the new section at the end
-    updated_content = content + "\n" + "\n".join(new_section)
-
-# Write the updated content back to README.md
-with open("README.md", "w") as file:
-    file.write(updated_content)
+if __name__ == "__main__":
+    sys.exit(main())

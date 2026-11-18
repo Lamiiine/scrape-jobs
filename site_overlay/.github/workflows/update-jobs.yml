@@ -1,0 +1,20 @@
+name: Fetch & Add Visa Jobs
+
+# Ingestion moved to Lamiiine/scrape-jobs ("Daily Job Scraper").
+# This workflow no longer runs on a schedule. The previous schedule called
+# Gemini once per job (HTTP 429), stored competitor apply URLs, and then
+# failed to deploy because `gh workflow run deploy.yml` returned HTTP 403.
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  fetch:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Ingestion lives in scrape-jobs
+        run: |
+          echo "Jobs are published by https://github.com/Lamiiine/scrape-jobs"
+          echo "This workflow is manual-only so it cannot add unevidenced listings."
