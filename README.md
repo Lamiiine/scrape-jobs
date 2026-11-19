@@ -27,12 +27,12 @@ LinkedIn must approve an app before it can post. Create one at https://www.linke
 <!-- START OF JOB LISTINGS -->
 # Visa sponsorship jobs
 
-Updated on 2026-11-19 12:51:46 UTC
+Updated on 2026-11-19 14:52:48 UTC
 
 - Listings: **97**
 - Sponsorship evidence confirmed: **71**
 - Sponsorship evidence likely (known sponsor list): **26**
-- With a salary range: **35**
+- With a salary range: **34**
 - With relocation assistance in the posting: **25**
 
 Only jobs with `sponsorship_evidence` of `confirmed` or `likely` are included.
@@ -40,6 +40,7 @@ Apply links are employer or ATS URLs. Competitor boards are not used.
 
 | Title | Company | Location | Posted | Evidence | Apply |
 |-------|---------|----------|--------|----------|-------|
+| Community Engagement Manager, Data Centres (Canada) | Anthropic | British Columbia, Canada | 2026-11-19T14:43:03Z | confirmed | [Apply](https://job-boards.greenhouse.io/anthropic/jobs/5486907008) |
 | Senior Treasury Product Control Analyst | Monzo | Remote, Cardiff, United Kingdom | 2026-11-19T10:00:42Z | likely | [Apply](https://job-boards.greenhouse.io/monzo/jobs/8398665) |
 | Sales Director | Anthropic | Seoul, South Korea | 2026-11-19T05:55:15Z | confirmed | [Apply](https://job-boards.greenhouse.io/anthropic/jobs/5474013008) |
 | Applied AI Engineer, Commercial | Anthropic | San Francisco, CA, United States | 2026-11-18T16:26:55Z | confirmed | [Apply](https://job-boards.greenhouse.io/anthropic/jobs/5483945008) |
@@ -79,10 +80,10 @@ Apply links are employer or ATS URLs. Competitor boards are not used.
 | Commercial Activation Lead | Anthropic | San Francisco, CA, United States | 2026-11-13T01:32:22Z | confirmed | [Apply](https://job-boards.greenhouse.io/anthropic/jobs/5478939008) |
 | Customer Marketing Lead, Startups Program | Anthropic | San Francisco, CA, United States | 2026-11-12T23:47:11Z | confirmed | [Apply](https://job-boards.greenhouse.io/anthropic/jobs/5477150008) |
 | Partner Support Operations Lead | Anthropic | San Francisco, CA, United States | 2026-11-12T21:58:14Z | confirmed | [Apply](https://job-boards.greenhouse.io/anthropic/jobs/5453322008) |
-| Tech Lead Manager, Growth Data Science | Anthropic | San Francisco, CA, United States | 2026-11-12T21:54:18Z | confirmed | [Apply](https://job-boards.greenhouse.io/anthropic/jobs/5478799008) |
 
 _Showing 40 of 97. The full catalog is `data/latest-jobs.json`._
 <!-- END OF JOB LISTINGS -->
+
 
 
 
