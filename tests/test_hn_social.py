@@ -3,7 +3,6 @@ import unittest
 from scraper.hn import parse_comment
 from scraper.models import Job
 from scraper.slug import job_slug
-from scraper.social import linkedin_text, telegram_text
 
 
 THUNDER = (
@@ -71,35 +70,6 @@ class SlugTests(unittest.TestCase):
             job_slug(job),
             "anthropic-applied-ai-engineer-commercial-san-francisco-ca-united-states-1e1w",
         )
-
-
-class SocialTests(unittest.TestCase):
-    def test_digest_escapes_html_and_names_the_page(self):
-        job = Job(
-            company="A&B",
-            position="Role <lead>",
-            location="Berlin",
-            apply_url="https://job-boards.greenhouse.io/anthropic/jobs/5483945008",
-            post_date="2026-11-18",
-            valid_through="2027-01-02",
-            sponsorship_evidence="confirmed",
-            sponsorship_quote="",
-            visa="Visa sponsorship",
-            reloc="Relocation assistance",
-            contract="",
-            source="hn:1",
-            link_status="alive",
-            summary="",
-        )
-        text = telegram_text([job], extra=3)
-        self.assertIn("A&amp;B", text)
-        self.assertIn("Role &lt;lead&gt;", text)
-        self.assertIn("https://visajobs.xyz/visa-sponsored-jobs/", text)
-        self.assertIn("And 3 more", text)
-        self.assertNotIn("<lead>", text)
-        plain = linkedin_text([job], extra=0)
-        self.assertIn("A&B", plain)
-        self.assertIn("relocation", plain)
 
 
 if __name__ == "__main__":

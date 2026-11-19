@@ -13,7 +13,7 @@ import sys
 
 from scraper.pipeline import DATA_PATH, scrape, write_outputs
 from scraper.publish import publish_jobs
-from scraper.social import announce
+from scraper.social import announce, social_dry_run
 from scraper.urls import canonical_url
 
 
@@ -23,6 +23,11 @@ def main(argv: list[str] | None = None) -> int:
     parser.add_argument("--no-publish", action="store_true", help="Do not try to update the site repo")
     parser.add_argument("--no-announce", action="store_true", help="Do not post to Telegram or LinkedIn")
     parser.add_argument("--dry-run", action="store_true", help="Scrape and print counts only")
+    parser.add_argument(
+        "--dry-run-social",
+        action="store_true",
+        help="Print the Telegram and LinkedIn posts without sending them",
+    )
     args = parser.parse_args(argv)
 
     already = _known_urls()
@@ -35,11 +40,14 @@ def main(argv: list[str] | None = None) -> int:
         return 1
     fresh = [job for job in jobs if canonical_url(job.apply_url) not in already]
     print(f"New since the last catalog: {len(fresh)}")
+    preview = social_dry_run(args.dry_run_social)
     if args.dry_run:
+        if preview and not args.no_announce:
+            announce(jobs, fresh, dry_run=True)
         return 0
     write_outputs(jobs)
     if not args.no_announce:
-        announce(fresh)
+        announce(jobs, fresh, dry_run=preview)
     if args.no_publish:
         return 0
     publish_jobs(jobs)
