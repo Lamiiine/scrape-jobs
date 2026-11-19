@@ -33,7 +33,7 @@ ELE_COUNTRY_INSERT = '''"Qatar": "QA",
       "Croatia": "HR", "Slovakia": "SK", "Slovenia": "SI",
       "Greece": "GR", "Malta": "MT", "Cyprus": "CY", "Iceland": "IS",'''
 
-EMPLOYMENT_FILTER = '''
+EMPLOYMENT_FILTER_OLD = '''
   eleventyConfig.addFilter("employmentType", (contract) => {
     const c = String(contract || "").toLowerCase();
     if (!c) return "";
@@ -45,6 +45,33 @@ EMPLOYMENT_FILTER = '''
     return "";
   });
 '''
+
+EMPLOYMENT_FILTER = '''
+  eleventyConfig.addFilter("employmentType", (contract) => {
+    const c = String(contract || "").toLowerCase();
+    if (c.includes("intern")) return "INTERN";
+    if (c.includes("part-time") || c.includes("part time") || c.includes("parttime")) return "PART_TIME";
+    if (c.includes("contract") || c.includes("freelance")) return "CONTRACTOR";
+    if (c.includes("temp")) return "TEMPORARY";
+    return "FULL_TIME";
+  });
+'''
+
+# The previous publish omitted the field when the ATS had no schedule.
+EMPLOYMENT_OPTIONAL = '{% set emp = job.contract | employmentType %}{% if emp %}"employmentType": "{{ emp }}",{% endif %}'
+EMPLOYMENT_ALWAYS = '"employmentType": "{{ job.employmentType or (job.contract | employmentType) }}",'
+
+# Already-patched listing pages dropped addressRegion. Put it back, preferring a real region.
+INDEX_ADDRESS_OLD = '''"addressLocality": {{ (job.address.addressLocality if job.address else (job.location | extractCity)) | jsonify | safe }}{% set country = job.address.addressCountry if job.address and job.address.addressCountry else (job.location | countryCode) %}{% if country %},
+              "addressCountry": "{{ country }}"{% endif %}'''
+INDEX_ADDRESS_NEW = '''"addressLocality": {{ (job.address.addressLocality if job.address and job.address.addressLocality else ((job.location | extractCity) or "Remote")) | jsonify | safe }},
+              "addressRegion": {{ (job.address.addressRegion if job.address and job.address.addressRegion else (job.address.addressLocality if job.address and job.address.addressLocality else ((job.location | extractCity) or "Remote"))) | jsonify | safe }}{% set country = job.address.addressCountry if job.address and job.address.addressCountry else (job.location | countryCode) %}{% if country %},
+              "addressCountry": "{{ country }}"{% endif %}'''
+
+CITY_REGION_OLD = '''"addressLocality": "{{ job.location | extractCity }}",
+              "addressRegion": "{{ job.location | extractCity }}",'''
+CITY_REGION_NEW = '''"addressLocality": {{ (job.address.addressLocality if job.address and job.address.addressLocality else ((job.location | extractCity) or "Remote")) | jsonify | safe }},
+              "addressRegion": {{ (job.address.addressRegion if job.address and job.address.addressRegion else (job.address.addressLocality if job.address and job.address.addressLocality else ((job.location | extractCity) or "Remote"))) | jsonify | safe }},'''
 
 CONTRACT_BADGE = '<span class="badge badge-contract">{{ job.contract }}</span>'
 CONTRACT_BADGE_SAFE = '{% if job.contract %}<span class="badge badge-contract">{{ job.contract }}</span>{% endif %}'
@@ -110,6 +137,7 @@ def patch_eleventy(text: str) -> str:
         needle = 'eleventyConfig.addFilter("limit"'
         if needle in updated:
             updated = updated.replace(needle, EMPLOYMENT_FILTER + "\n  " + needle, 1)
+    updated = updated.replace(EMPLOYMENT_FILTER_OLD, EMPLOYMENT_FILTER)
     updated = updated.replace(NOON_OLD, NOON_NEW).replace(COUNTRY_LINE_OLD, COUNTRY_LINE_NEW)
     return updated
 
@@ -145,10 +173,7 @@ def patch_tree(root: Path) -> list[str]:
             '"validThrough": "{{ job.post_date | validThrough }}",',
             '"validThrough": "{{ job.valid_through or (job.post_date | validThrough) }}",',
         )
-        patched = patched.replace(
-            '"employmentType": "FULL_TIME",',
-            '{% set emp = job.contract | employmentType %}{% if emp %}"employmentType": "{{ emp }}",{% endif %}',
-        )
+        patched = _patch_jobposting(patched)
         if path.name == "index.njk" and path.parent.name == "src":
             patched = patched.replace(HOME_OLD, HOME_NEW)
         if path.parent.name == "visa-sponsored-jobs" and path.name == "index.njk":
@@ -175,6 +200,14 @@ def patch_tree(root: Path) -> list[str]:
             base.write_text(current.replace(MAIN_JS_TAG, TIMEAGO_TAG, 1), encoding="utf-8")
             changed.append(str(base.relative_to(root)))
     return changed
+
+
+def _patch_jobposting(text: str) -> str:
+    text = text.replace('"employmentType": "FULL_TIME",', EMPLOYMENT_ALWAYS)
+    text = text.replace(EMPLOYMENT_OPTIONAL, EMPLOYMENT_ALWAYS)
+    text = text.replace(INDEX_ADDRESS_OLD, INDEX_ADDRESS_NEW)
+    text = text.replace(CITY_REGION_OLD, CITY_REGION_NEW)
+    return text
 
 
 def patch_markup(text: str) -> str:
@@ -223,16 +256,11 @@ def _patch_index_schema(text: str) -> str:
         "{{ jobs | length }}+ roles with recorded visa-sponsorship evidence",
     )
     text = text.replace(
-        '"employmentType": "FULL_TIME",',
-        '{% set emp = job.contract | employmentType %}{% if emp %}"employmentType": "{{ emp }}",{% endif %}',
-    )
-    text = text.replace(
         '''              "streetAddress": "",
               "addressLocality": "{{ job.location | extractCity }}",
               "addressRegion": "{{ job.location | extractCity }}",
               "postalCode": "",
               "addressCountry": "{{ job.location | countryCode }}"''',
-        '''              "addressLocality": {{ (job.address.addressLocality if job.address else (job.location | extractCity)) | jsonify | safe }}{% set country = job.address.addressCountry if job.address and job.address.addressCountry else (job.location | countryCode) %}{% if country %},
-              "addressCountry": "{{ country }}"{% endif %}''',
+        INDEX_ADDRESS_NEW,
     )
-    return text
+    return _patch_jobposting(text)

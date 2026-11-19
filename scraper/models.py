@@ -64,13 +64,17 @@ class Job:
             "summary": _plain(self.summary),
             "body": _body(self.body),
             "excerpt": _plain(self.excerpt),
-            "address": {
-                key: _plain(value) if isinstance(value, str) else value
-                for key, value in (self.address or {}).items()
-            },
+            "address": _address_for_site(self.address, self.location),
+            "employmentType": employment_type(self.contract),
             "source": self.source,
             "link_status": self.link_status,
         }
+        if _is_remote(self.location, record["address"]):
+            record["jobLocationType"] = "TELECOMMUTE"
+            record["applicantLocationRequirements"] = {
+                "@type": "Country",
+                "name": _plain(self.country) or record["address"].get("addressCountry") or "Remote",
+            }
         if self.department:
             record["department"] = _plain(self.department)
         if self.deadline:
@@ -83,6 +87,35 @@ class Job:
 
     def to_local(self) -> dict:
         return self.to_site()
+
+
+def _address_for_site(address: dict | None, location: str) -> dict:
+    data = {
+        key: _plain(value) if isinstance(value, str) else value
+        for key, value in (address or {}).items()
+    }
+    city = data.get("addressLocality") or _city(location)
+    region = data.get("addressRegion") or city or "Remote"
+    data["addressLocality"] = city or region
+    data["addressRegion"] = region
+    data.setdefault("addressCountry", "")
+    return data
+
+
+def _city(location: str) -> str:
+    part = (location or "").split(",")[0].strip()
+    if part.lower().startswith("remote"):
+        rest = (location or "").split(",")[1:]
+        if rest and rest[0].strip() and rest[0].strip().lower() not in {"united kingdom", "uk", "germany", "united states"}:
+            return rest[0].strip()
+        return "Remote"
+    return part
+
+
+def _is_remote(location: str, address: dict) -> bool:
+    if "remote" in (location or "").lower():
+        return True
+    return str(address.get("addressLocality") or "").lower() == "remote"
 
 
 def _plain(value: str) -> str:
@@ -105,6 +138,20 @@ def visa_label(level: str) -> str:
     if level == "likely":
         return "Visa sponsorship (likely)"
     return ""
+
+
+def employment_type(contract: str) -> str:
+    """Schema.org employmentType. Unknown schedules are full-time."""
+    text = (contract or "").lower()
+    if re.search(r"intern", text):
+        return "INTERN"
+    if re.search(r"part[-_ ]?time", text):
+        return "PART_TIME"
+    if re.search(r"contract|freelance", text):
+        return "CONTRACTOR"
+    if re.search(r"\btemp", text):
+        return "TEMPORARY"
+    return "FULL_TIME"
 
 
 def valid_through(post_date: date, today: date, alive: bool) -> date:

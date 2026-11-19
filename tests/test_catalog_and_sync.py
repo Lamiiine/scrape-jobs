@@ -73,6 +73,30 @@ class CatalogTests(unittest.TestCase):
         chosen = select_board([recent, stale], today=date(2026, 11, 18))
         self.assertEqual([item.position for item in chosen], ["Backend Engineer"])
 
+    def test_published_record_always_has_schedule_and_region(self):
+        plain = job(contract="").to_site()
+        self.assertEqual(plain["employmentType"], "FULL_TIME")
+        self.assertEqual(plain["address"]["addressRegion"], "London")
+        self.assertNotIn("jobLocationType", plain)
+        remote = job(
+            contract="Internship",
+            location="Remote, United Kingdom",
+            country="United Kingdom",
+            address={"addressLocality": "Remote", "addressCountry": "GB"},
+        ).to_site()
+        self.assertEqual(remote["employmentType"], "INTERN")
+        self.assertEqual(remote["jobLocationType"], "TELECOMMUTE")
+        self.assertEqual(remote["applicantLocationRequirements"], {"@type": "Country", "name": "United Kingdom"})
+        self.assertEqual(remote["address"]["addressRegion"], "Remote")
+        states = {
+            "Part-time": "PART_TIME",
+            "Contract": "CONTRACTOR",
+            "Temporary": "TEMPORARY",
+            "Full-time": "FULL_TIME",
+        }
+        for contract, expected in states.items():
+            self.assertEqual(job(contract=contract).to_site()["employmentType"], expected)
+
     def test_same_url_is_refreshed_not_duplicated(self):
         existing = [job(sponsorship_quote="old").to_site()]
         fresh = job(sponsorship_quote="We can sponsor visas now.")
@@ -101,6 +125,15 @@ class SiteSyncTests(unittest.TestCase):
         self.assertIn('"United States": "US"', patched)
         self.assertIn('addFilter("employmentType"', patched)
         self.assertEqual(patched.count('addFilter("employmentType"'), 1)
+        self.assertIn('return "FULL_TIME"', patched)
+        self.assertEqual(patch_eleventy(patched), patched)
+
+    def test_old_employment_filter_defaults_to_full_time(self):
+        from scraper.site_sync import EMPLOYMENT_FILTER_OLD
+        patched = patch_eleventy(EMPLOYMENT_FILTER_OLD + '\n  eleventyConfig.addFilter("limit", (arr, limit) => {\n')
+        self.assertEqual(patched.count('addFilter("employmentType"'), 1)
+        self.assertIn('return "FULL_TIME"', patched)
+        self.assertNotIn('if (!c) return ""', patched)
         self.assertEqual(patch_eleventy(patched), patched)
 
     def test_patch_tree_copies_overlay_and_homepage_claim(self):
@@ -127,6 +160,18 @@ class SiteSyncTests(unittest.TestCase):
             self.assertIn("{% if job.contract %}", text)
             self.assertTrue((root / "src" / "visa-sponsored-jobs" / "job.njk").exists())
             self.assertTrue(any(item.endswith("update-jobs.yml") for item in changed))
+            job_page = (root / "src" / "visa-sponsored-jobs" / "job.njk").read_text(encoding="utf-8")
+            self.assertIn('"employmentType": "{{ emp }}"', job_page)
+            self.assertIn('"addressRegion"', job_page)
+            self.assertIn('"jobLocationType": "TELECOMMUTE"', job_page)
+            self.assertNotIn('{% if emp %}', job_page)
+
+    def test_listing_schema_gains_region_and_always_has_a_schedule(self):
+        from scraper.site_sync import EMPLOYMENT_OPTIONAL, INDEX_ADDRESS_OLD, _patch_jobposting
+        patched = _patch_jobposting(EMPLOYMENT_OPTIONAL + "\n" + INDEX_ADDRESS_OLD)
+        self.assertIn("job.employmentType or (job.contract | employmentType)", patched)
+        self.assertNotIn("{% if emp %}", patched)
+        self.assertIn('"addressRegion"', patched)
 
 
 if __name__ == "__main__":
