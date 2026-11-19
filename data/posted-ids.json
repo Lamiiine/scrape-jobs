@@ -1,13 +1,13 @@
 {
   "posted": {
-    "telegram": [],
+    "telegram": [
+      "https://job-boards.greenhouse.io/monzo/jobs/8398665"
+    ],
     "linkedin": []
   },
-  "pending": [
-    "https://job-boards.greenhouse.io/monzo/jobs/8398665"
-  ],
+  "pending": [],
   "last_post": {
-    "telegram": "",
+    "telegram": "2026-11-19",
     "linkedin": ""
   }
 }
