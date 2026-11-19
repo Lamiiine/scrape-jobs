@@ -49,6 +49,19 @@ class ClassifyTests(unittest.TestCase):
         self.assertEqual(result.level, "confirmed")
         self.assertFalse(result.relocation)
 
+    def test_bare_visa_sponsorship_line_is_confirmed(self):
+        result = classify("Stream | Amsterdam | Full Time | Visa sponsorship")
+        self.assertEqual(result.level, "confirmed")
+
+    def test_visa_plus_relocation_is_both(self):
+        result = classify("Mesmer | Berlin | ONSITE | VISA + relocation | €100k")
+        self.assertEqual(result.level, "confirmed")
+        self.assertTrue(result.relocation)
+
+    def test_explicit_no_visa_sponsorship_stays_unverified(self):
+        result = classify("Quantum Rise | Remote | Full-time | No visa sponsorship")
+        self.assertEqual(result.level, "unverified")
+
     def test_known_sponsor_without_text_is_likely(self):
         result = classify("Backend engineer in London.", company="Monzo", known_sponsors={"monzo"})
         self.assertEqual(result.level, "likely")

@@ -366,4 +366,10 @@ def fetch_all(today: date | None = None, workers: int = 6) -> tuple[list[Job], l
                 continue
             print(f"  {kind}:{token} -> {len(batch)} evidenced jobs")
             found.extend(batch)
+    try:
+        from scraper.hn import fetch_who_is_hiring
+        found.extend(fetch_who_is_hiring(today))
+    except Exception as exc:
+        errors.append(f"hn:whoishiring: {exc}")
+        print(f"  source hn:whoishiring failed: {exc}")
     return found, errors
