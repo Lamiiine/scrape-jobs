@@ -53,6 +53,25 @@ class LocationTests(unittest.TestCase):
         self.assertEqual(parsed.country_code, "DE")
         self.assertNotEqual(parsed.country_code, "EU")
         self.assertIn("Germany", parsed.location)
+        self.assertEqual(parsed.region, "")
+        self.assertEqual(parsed.as_dict()["addressRegion"], "Berlin")
+
+    def test_named_regions_are_kept(self):
+        england = parse_location("London, England, United Kingdom")
+        self.assertEqual(england.region, "England")
+        self.assertEqual(england.as_dict()["addressRegion"], "England")
+        paris = parse_location("Paris, Île-de-France, France")
+        self.assertEqual(paris.region, "Île-de-France")
+        self.assertEqual(paris.country_code, "FR")
+        berlin_state = parse_location("Berlin State, Germany")
+        self.assertEqual(berlin_state.region, "Berlin")
+        self.assertEqual(berlin_state.as_dict()["addressRegion"], "Berlin")
+
+    def test_remote_keeps_a_region_and_a_country(self):
+        parsed = parse_location("Remote, United Kingdom")
+        self.assertTrue(parsed.remote)
+        self.assertEqual(parsed.country_code, "GB")
+        self.assertEqual(parsed.as_dict()["addressRegion"], "Remote")
 
     def test_us_state(self):
         parsed = parse_location("San Francisco, CA")

@@ -145,6 +145,31 @@ CITY_COUNTRY = {
     "remote": ("Remote", "", ""),
 }
 
+# Regions that are not US states. The value is what Google should see in addressRegion.
+REGION_NAMES = {
+    "england": "England",
+    "scotland": "Scotland",
+    "wales": "Wales",
+    "northern ireland": "Northern Ireland",
+    "ile-de-france": "Île-de-France",
+    "ile de france": "Île-de-France",
+    "berlin state": "Berlin",
+    "state of berlin": "Berlin",
+    "land berlin": "Berlin",
+    "bavaria": "Bavaria",
+    "bayern": "Bavaria",
+    "baden-wurttemberg": "Baden-Württemberg",
+    "north rhine-westphalia": "North Rhine-Westphalia",
+    "nordrhein-westfalen": "North Rhine-Westphalia",
+    "hesse": "Hesse",
+    "hessen": "Hesse",
+    "ontario": "Ontario",
+    "british columbia": "British Columbia",
+    "quebec": "Quebec",
+    "new south wales": "New South Wales",
+    "victoria": "Victoria",
+}
+
 _STATE_BY_NAME = {name.lower(): abbr.upper() for abbr, name in US_STATES.items()}
 
 CODE_TO_NAME = {}
@@ -169,14 +194,17 @@ class Address:
     country: str
     country_code: str
     postal_code: str = ""
+    remote: bool = False
 
     def as_dict(self) -> dict:
+        locality = self.locality or ("Remote" if self.remote else "")
+        # Google requires addressRegion. A known state wins; otherwise repeat the city.
+        region = self.region or locality or "Remote"
         data = {
-            "addressLocality": self.locality,
+            "addressLocality": locality or region,
+            "addressRegion": region,
             "addressCountry": self.country_code,
         }
-        if self.region:
-            data["addressRegion"] = self.region
         if self.postal_code:
             data["postalCode"] = self.postal_code
         return data
@@ -196,8 +224,37 @@ def _country_from_token(token: str) -> tuple[str, str]:
     return code, CODE_TO_NAME.get(code, token.strip())
 
 
+def _fold(value: str) -> str:
+    value = (value or "").lower().strip()
+    return (
+        value.replace("î", "i")
+        .replace("ï", "i")
+        .replace("é", "e")
+        .replace("è", "e")
+        .replace("ê", "e")
+        .replace("ü", "u")
+        .replace("ö", "o")
+        .replace("ä", "a")
+    )
+
+
+def _region_in_parts(parts: list[str], locality: str) -> str:
+    city = _fold(locality)
+    for part in parts:
+        key = _fold(part)
+        label = REGION_NAMES.get(key)
+        if not label:
+            continue
+        # "Berlin" the city is not a region. "Berlin State" is.
+        if key == city and key == _fold(label):
+            continue
+        return label
+    return ""
+
+
 def parse_location(raw: str, address: dict | None = None) -> Address:
     """Build a display location and ISO country. Never emits country code EU."""
+    remote = bool(re.search(r"\bremote\b|\btelecommut", (raw or "").lower()))
     if isinstance(address, dict):
         postal = address.get("postalAddress") if isinstance(address.get("postalAddress"), dict) else address
         locality = _clean(str(postal.get("addressLocality") or postal.get("city") or ""))
@@ -210,11 +267,13 @@ def parse_location(raw: str, address: dict | None = None) -> Address:
         if locality or code:
             parts = [p for p in (locality, region, country_name) if p]
             display = ", ".join(parts) if parts else _clean(raw) or "Remote"
-            return Address(display, locality, region, country_name, code, postal_code)
+            if remote and not display.lower().startswith("remote"):
+                display = f"Remote, {display}"
+            return Address(display, locality, region, country_name, code, postal_code, remote)
 
     text = _clean(raw)
     if not text or text.lower() in {"hybrid", "on-site", "onsite", "n/a", "various"}:
-        return Address("Remote" if not text else text, "", "", "", "")
+        return Address("Remote" if not text else text, "", "", "", "", remote=remote or not text)
 
     lowered = text.lower()
     named_city = None
@@ -231,7 +290,7 @@ def parse_location(raw: str, address: dict | None = None) -> Address:
                 code, country_name = _country_from_token(token)
                 break
         label = "Remote" + (f", {country_name}" if country_name else "")
-        return Address(label, "Remote", "", country_name, code)
+        return Address(label, "Remote", "", country_name, code, remote=True)
 
     parts = [p.strip() for p in re.split(r"[,;/|]", text) if p.strip()]
     code, country_name = "", ""
@@ -262,6 +321,10 @@ def parse_location(raw: str, address: dict | None = None) -> Address:
             code, country_name = _country_from_token(part)
             if code:
                 break
+    if not region:
+        region = _region_in_parts(parts, locality)
+        if region and _fold(locality).startswith(_fold(region)):
+            locality = region
 
     if country_name and country_name.lower() not in locality.lower():
         display_parts = [locality]
@@ -271,4 +334,6 @@ def parse_location(raw: str, address: dict | None = None) -> Address:
         display = ", ".join(display_parts)
     else:
         display = text
-    return Address(display, locality, region, country_name, code)
+    if remote and display and not display.lower().startswith("remote"):
+        display = f"Remote, {display}"
+    return Address(display, locality, region, country_name, code, remote=remote)
