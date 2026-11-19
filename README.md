@@ -10,7 +10,19 @@ A job is tagged visa-sponsored only with `sponsorship_evidence`:
 
 Apply links are the employer or ATS URL. Competitor boards (Arbeitnow, Relocate.me, VisaSponsor.jobs, Jaabz, EuropeVisaJobs, and similar) are not used. Each record stores the employer's posted timestamp (`posted_at`, not a date pinned to noon), the posting text (`body`), `valid_through` (posting date plus 45 days, extended while the employer listing is still open), a location/address when the board provides one, and salary when a range is present. Jobs older than 90 days are left off the board.
 
-The site update runs only when the Actions secret `SITE_GITHUB_TOKEN` is set. Without it, this repository still records `data/latest-jobs.json` and the workflow succeeds. See the workflow log for the exact token permissions. The public site has not deployed since 13 August 2026 because its own bot push cannot start **Build and Deploy**, and `gh workflow run deploy.yml` returns HTTP 403.
+The site update runs only when the Actions secret `SITE_GITHUB_TOKEN` is set. Without it, this repository still records `data/latest-jobs.json` and the workflow succeeds. See the workflow log for the exact token permissions.
+
+New roles are also posted to Telegram and LinkedIn when those secrets are set. The run compares against `data/latest-jobs.json` and posts at most eight new roles. LinkedIn and X do not offer a public job search, so they are distribution channels, not sources. Extra roles come from the monthly Hacker News “Who is hiring?” thread, where the employer writes the visa line and links to their own site.
+
+### Telegram
+
+1. Open @BotFather, send `/newbot`, and copy the token.
+2. Add the bot as an administrator of the channel (`@visa_sponsored_jobss`).
+3. On Lamiiine/scrape-jobs, add Actions secrets `TELEGRAM_BOT_TOKEN` and `TELEGRAM_CHAT_ID` (`@visa_sponsored_jobss`).
+
+### LinkedIn company page
+
+LinkedIn must approve an app before it can post. Create one at https://www.linkedin.com/developers/apps, request the Community Management API, and complete the one-time sign-in described in the workflow log (`LINKEDIN IS NOT CONNECTED`). Secrets: `LINKEDIN_CLIENT_ID`, `LINKEDIN_CLIENT_SECRET`, `LINKEDIN_REFRESH_TOKEN`, `LINKEDIN_ORGANIZATION_ID`. The daily run refreshes the access token itself.
 
 <!-- START OF JOB LISTINGS -->
 # Visa sponsorship jobs
