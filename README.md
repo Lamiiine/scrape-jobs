@@ -27,19 +27,20 @@ LinkedIn must approve an app before it can post. Create one at https://www.linke
 <!-- START OF JOB LISTINGS -->
 # Visa sponsorship jobs
 
-Updated on 2026-11-18 21:34:23 UTC
+Updated on 2026-11-19 08:07:55 UTC
 
-- Listings: **94**
-- Sponsorship evidence confirmed: **67**
+- Listings: **100**
+- Sponsorship evidence confirmed: **73**
 - Sponsorship evidence likely (known sponsor list): **27**
 - With a salary range: **36**
-- With relocation assistance in the posting: **26**
+- With relocation assistance in the posting: **27**
 
 Only jobs with `sponsorship_evidence` of `confirmed` or `likely` are included.
 Apply links are employer or ATS URLs. Competitor boards are not used.
 
 | Title | Company | Location | Posted | Evidence | Apply |
 |-------|---------|----------|--------|----------|-------|
+| Sales Director | Anthropic | Seoul, South Korea | 2026-11-19T05:55:15Z | confirmed | [Apply](https://job-boards.greenhouse.io/anthropic/jobs/5474013008) |
 | Applied AI Engineer, Commercial | Anthropic | San Francisco, CA, United States | 2026-11-18T16:26:55Z | confirmed | [Apply](https://job-boards.greenhouse.io/anthropic/jobs/5483945008) |
 | Regulatory Project Manager | N26 | Berlin, Germany | 2026-11-18T13:43:52Z | confirmed | [Apply](https://n26.com/en-eu/careers/positions/8398981?gh_jid=8398981) |
 | Staff Brand Designer | Monzo | London, United Kingdom | 2026-11-18T13:08:57Z | likely | [Apply](https://job-boards.greenhouse.io/monzo/jobs/8396136) |
@@ -79,10 +80,10 @@ Apply links are employer or ATS URLs. Competitor boards are not used.
 | Customer Marketing Lead, Startups Program | Anthropic | San Francisco, CA, United States | 2026-11-12T23:47:11Z | confirmed | [Apply](https://job-boards.greenhouse.io/anthropic/jobs/5477150008) |
 | Partner Support Operations Lead | Anthropic | San Francisco, CA, United States | 2026-11-12T21:58:14Z | confirmed | [Apply](https://job-boards.greenhouse.io/anthropic/jobs/5453322008) |
 | Tech Lead Manager, Growth Data Science | Anthropic | San Francisco, CA, United States | 2026-11-12T21:54:18Z | confirmed | [Apply](https://job-boards.greenhouse.io/anthropic/jobs/5478799008) |
-| Resale Operations Lead | Anthropic | San Francisco, CA, United States | 2026-11-12T20:18:09Z | confirmed | [Apply](https://job-boards.greenhouse.io/anthropic/jobs/5468548008) |
 
-_Showing 40 of 94. The full catalog is `data/latest-jobs.json`._
+_Showing 40 of 100. The full catalog is `data/latest-jobs.json`._
 <!-- END OF JOB LISTINGS -->
+
 
 
 
