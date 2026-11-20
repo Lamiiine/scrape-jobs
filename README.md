@@ -27,19 +27,26 @@ LinkedIn must approve an app before it can post. Create one at https://www.linke
 <!-- START OF JOB LISTINGS -->
 # Visa sponsorship jobs
 
-Updated on 2026-11-19 14:52:48 UTC
+Updated on 2026-11-20 14:32:41 UTC
 
-- Listings: **97**
-- Sponsorship evidence confirmed: **71**
-- Sponsorship evidence likely (known sponsor list): **26**
-- With a salary range: **34**
-- With relocation assistance in the posting: **25**
+- Listings: **88**
+- Sponsorship evidence confirmed: **63**
+- Sponsorship evidence likely (known sponsor list): **25**
+- With a salary range: **33**
+- With relocation assistance in the posting: **22**
 
 Only jobs with `sponsorship_evidence` of `confirmed` or `likely` are included.
 Apply links are employer or ATS URLs. Competitor boards are not used.
 
 | Title | Company | Location | Posted | Evidence | Apply |
 |-------|---------|----------|--------|----------|-------|
+| [P] Engineering Manager, Privacy Infrastructure | Anthropic | New York, NY, United States | 2026-11-20T03:04:34Z | confirmed | [Apply](https://job-boards.greenhouse.io/anthropic/jobs/5490122008) |
+| Applied AI Architect, Beneficial Deployment | Anthropic | Sydney, New South Wales, Australia | 2026-11-20T02:35:45Z | confirmed | [Apply](https://job-boards.greenhouse.io/anthropic/jobs/5486780008) |
+| Corporate Network Engineer | Anthropic | Remote | 2026-11-20T01:57:48Z | confirmed | [Apply](https://job-boards.greenhouse.io/anthropic/jobs/5489564008) |
+| Finance Systems Production Support Lead | Anthropic | San Francisco, CA, United States | 2026-11-19T23:24:42Z | confirmed | [Apply](https://job-boards.greenhouse.io/anthropic/jobs/5483403008) |
+| Head of Community Relations, Compute | Anthropic | San Francisco, CA, United States | 2026-11-19T17:30:20Z | confirmed | [Apply](https://job-boards.greenhouse.io/anthropic/jobs/5456315008) |
+| Strategic Account Executive, Tech | Anthropic | San Francisco, CA, United States | 2026-11-19T17:22:29Z | confirmed | [Apply](https://job-boards.greenhouse.io/anthropic/jobs/5138549008) |
+| AWS Partnerships Lead | Anthropic | London, England, United Kingdom | 2026-11-19T16:04:53Z | confirmed | [Apply](https://job-boards.greenhouse.io/anthropic/jobs/5486656008) |
 | Community Engagement Manager, Data Centres (Canada) | Anthropic | British Columbia, Canada | 2026-11-19T14:43:03Z | confirmed | [Apply](https://job-boards.greenhouse.io/anthropic/jobs/5486907008) |
 | Senior Treasury Product Control Analyst | Monzo | Remote, Cardiff, United Kingdom | 2026-11-19T10:00:42Z | likely | [Apply](https://job-boards.greenhouse.io/monzo/jobs/8398665) |
 | Sales Director | Anthropic | Seoul, South Korea | 2026-11-19T05:55:15Z | confirmed | [Apply](https://job-boards.greenhouse.io/anthropic/jobs/5474013008) |
@@ -70,19 +77,13 @@ Apply links are employer or ATS URLs. Competitor boards are not used.
 | Corporate Counsel, Public Reporting | Anthropic | New York, NY, United States | 2026-11-14T05:41:15Z | confirmed | [Apply](https://job-boards.greenhouse.io/anthropic/jobs/5462511008) |
 | Manager, Enterprise Sales - Industries, ANZ | Anthropic | Sydney, New South Wales, Australia | 2026-11-14T05:18:57Z | confirmed | [Apply](https://job-boards.greenhouse.io/anthropic/jobs/5473344008) |
 | Technical Program Manager, Life Sciences Research (Genetic Medicine) | Anthropic | San Francisco, CA, United States | 2026-11-13T21:57:59Z | confirmed | [Apply](https://job-boards.greenhouse.io/anthropic/jobs/5481980008) |
-| GTM Narrative Lead | Anthropic | San Francisco, CA, United States | 2026-11-13T21:52:16Z | confirmed | [Apply](https://job-boards.greenhouse.io/anthropic/jobs/5481671008) |
 | CMC & Manufacturing Lead, Life Sciences | Anthropic | Remote, United States | 2026-11-13T21:43:08Z | confirmed | [Apply](https://job-boards.greenhouse.io/anthropic/jobs/5481396008) |
 | Staff+ Software Engineer, Consumer | Anthropic | San Francisco, CA, United States | 2026-11-13T18:51:11Z | confirmed | [Apply](https://job-boards.greenhouse.io/anthropic/jobs/5477652008) |
 | Staff Software Engineer, Internal Products | Anthropic | San Francisco, CA, United States | 2026-11-13T17:59:01Z | confirmed | [Apply](https://job-boards.greenhouse.io/anthropic/jobs/5481096008) |
-| Partner Marketing Lead, APAC | Anthropic | Sydney, New South Wales, Australia | 2026-11-13T17:32:06Z | confirmed | [Apply](https://job-boards.greenhouse.io/anthropic/jobs/5473362008) |
-| Interim Director of Financial Operations & Control | Monzo | Remote, Cardiff, United Kingdom | 2026-11-13T13:12:21Z | likely | [Apply](https://job-boards.greenhouse.io/monzo/jobs/8385203) |
-| External Affairs, Southeast Asia | Anthropic | Singapore | 2026-11-13T04:19:56Z | confirmed | [Apply](https://job-boards.greenhouse.io/anthropic/jobs/5479890008) |
-| Commercial Activation Lead | Anthropic | San Francisco, CA, United States | 2026-11-13T01:32:22Z | confirmed | [Apply](https://job-boards.greenhouse.io/anthropic/jobs/5478939008) |
-| Customer Marketing Lead, Startups Program | Anthropic | San Francisco, CA, United States | 2026-11-12T23:47:11Z | confirmed | [Apply](https://job-boards.greenhouse.io/anthropic/jobs/5477150008) |
-| Partner Support Operations Lead | Anthropic | San Francisco, CA, United States | 2026-11-12T21:58:14Z | confirmed | [Apply](https://job-boards.greenhouse.io/anthropic/jobs/5453322008) |
 
-_Showing 40 of 97. The full catalog is `data/latest-jobs.json`._
+_Showing 40 of 88. The full catalog is `data/latest-jobs.json`._
 <!-- END OF JOB LISTINGS -->
+
 
 
 

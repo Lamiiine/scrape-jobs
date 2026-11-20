@@ -1,15 +1,22 @@
 {
   "posted": {
     "telegram": [
+      "https://job-boards.greenhouse.io/anthropic/jobs/5456315008",
+      "https://job-boards.greenhouse.io/anthropic/jobs/5483403008",
+      "https://job-boards.greenhouse.io/anthropic/jobs/5486780008",
+      "https://job-boards.greenhouse.io/anthropic/jobs/5489564008",
+      "https://job-boards.greenhouse.io/anthropic/jobs/5490122008",
       "https://job-boards.greenhouse.io/monzo/jobs/8398665"
     ],
     "linkedin": []
   },
   "pending": [
-    "https://job-boards.greenhouse.io/anthropic/jobs/5486907008"
+    "https://job-boards.greenhouse.io/anthropic/jobs/5486907008",
+    "https://job-boards.greenhouse.io/anthropic/jobs/5138549008",
+    "https://job-boards.greenhouse.io/anthropic/jobs/5486656008"
   ],
   "last_post": {
-    "telegram": "2026-11-19",
+    "telegram": "2026-11-20",
     "linkedin": ""
   }
 }
