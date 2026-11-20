@@ -109,6 +109,10 @@ NOON_JS_NEW = 'dateString + "T12:00:00Z"'
 
 COUNTRY_LINE_OLD = "const country = parts[parts.length - 1].trim();"
 COUNTRY_LINE_NEW = 'const country = (job.country || "").trim() || parts[parts.length - 1].trim();'
+# uniqueCountries and groupByCountry loop over job objects. countryCode only
+# receives a location string, so the same rewrite makes Eleventy throw
+# "job is not defined" and the live board never rebuilds.
+COUNTRY_JOB_FILTERS = ("uniqueCountries", "groupByCountry")
 
 SEARCH_OLD = """      var searchable = (card.dataset.position || '') + ' ' +
                        (card.dataset.company || '') + ' ' +
@@ -126,6 +130,18 @@ MAIN_JS_TAG = '  <script src="/assets/js/main.js"></script>'
 TIMEAGO_TAG = MAIN_JS_TAG + '\n  <script src="/assets/js/timeago.js"></script>'
 
 
+def _replace_in_filter(text: str, name: str, old: str, new: str) -> str:
+    marker = f'addFilter("{name}"'
+    start = text.find(marker)
+    if start < 0:
+        return text
+    end = text.find("});", start)
+    if end < 0:
+        return text
+    end += 3
+    return text[:start] + text[start:end].replace(old, new) + text[end:]
+
+
 def patch_eleventy(text: str) -> str:
     updated = text.replace(ELE_OLD_DEFAULT, ELE_NEW_DEFAULT)
     updated = updated.replace(ELE_OLD_EUROPE, ELE_NEW_EUROPE)
@@ -138,7 +154,11 @@ def patch_eleventy(text: str) -> str:
         if needle in updated:
             updated = updated.replace(needle, EMPLOYMENT_FILTER + "\n  " + needle, 1)
     updated = updated.replace(EMPLOYMENT_FILTER_OLD, EMPLOYMENT_FILTER)
-    updated = updated.replace(NOON_OLD, NOON_NEW).replace(COUNTRY_LINE_OLD, COUNTRY_LINE_NEW)
+    updated = updated.replace(NOON_OLD, NOON_NEW)
+    for name in COUNTRY_JOB_FILTERS:
+        updated = _replace_in_filter(updated, name, COUNTRY_LINE_OLD, COUNTRY_LINE_NEW)
+    # Repair the publish that applied the job.country rewrite inside countryCode.
+    updated = _replace_in_filter(updated, "countryCode", COUNTRY_LINE_NEW, COUNTRY_LINE_OLD)
     return updated
 
 

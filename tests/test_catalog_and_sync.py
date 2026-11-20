@@ -121,11 +121,56 @@ class SiteSyncTests(unittest.TestCase):
         self.assertIn('return codes[country] || "";', patched)
         self.assertIn("date.getDate() + 45", patched)
         self.assertIn('dateStr + "T12:00:00Z"', patch_eleventy('const normalized = dateStr + "T12:00:00";'))
-        self.assertIn("job.country", patch_eleventy("const country = parts[parts.length - 1].trim();"))
         self.assertIn('"United States": "US"', patched)
         self.assertIn('addFilter("employmentType"', patched)
         self.assertEqual(patched.count('addFilter("employmentType"'), 1)
         self.assertIn('return "FULL_TIME"', patched)
+        self.assertEqual(patch_eleventy(patched), patched)
+
+    def test_country_code_filter_keeps_reading_the_location_string(self):
+        sample = '''
+  eleventyConfig.addFilter("countryCode", (location) => {
+    const parts = cleaned.split(",");
+    const country = parts[parts.length - 1].trim();
+    return codes[country] || "";
+  });
+  eleventyConfig.addFilter("uniqueCountries", (jobs) => {
+    jobs.forEach((job) => {
+      const parts = cleaned.split(",");
+      const country = parts[parts.length - 1].trim();
+    });
+  });
+  eleventyConfig.addFilter("groupByCountry", (jobs) => {
+    jobs.forEach((job) => {
+      const country = parts[parts.length - 1].trim();
+    });
+  });
+'''
+        patched = patch_eleventy(sample)
+        country_filter = patched.split('addFilter("uniqueCountries"')[0]
+        self.assertIn("const country = parts[parts.length - 1].trim();", country_filter)
+        self.assertNotIn("job.country", country_filter)
+        self.assertEqual(patched.count("job.country"), 2)
+        self.assertEqual(patch_eleventy(patched), patched)
+
+    def test_repairs_country_code_filter_that_reads_job(self):
+        broken = '''
+  eleventyConfig.addFilter("countryCode", (location) => {
+    const parts = cleaned.split(",");
+    const country = (job.country || "").trim() || parts[parts.length - 1].trim();
+    return codes[country] || "";
+  });
+  eleventyConfig.addFilter("uniqueCountries", (jobs) => {
+    jobs.forEach((job) => {
+      const country = (job.country || "").trim() || parts[parts.length - 1].trim();
+    });
+  });
+'''
+        patched = patch_eleventy(broken)
+        country_filter = patched.split('addFilter("uniqueCountries"')[0]
+        self.assertNotIn("job", country_filter)
+        self.assertIn("const country = parts[parts.length - 1].trim();", country_filter)
+        self.assertIn("job.country", patched.split('addFilter("uniqueCountries"', 1)[1])
         self.assertEqual(patch_eleventy(patched), patched)
 
     def test_old_employment_filter_defaults_to_full_time(self):
