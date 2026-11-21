@@ -66,7 +66,7 @@ page until an app you own has been approved and you have signed in once.
 6. Find the company id:
 
    curl -s -H "Authorization: Bearer ACCESS_TOKEN" \\
-     -H "LinkedIn-Version: 202511" \\
+     -H "LinkedIn-Version: 202611" \\
      "https://api.linkedin.com/rest/organizationAcls?q=roleAssignee"
 
    Use the number in urn:li:organization:NUMBER.
@@ -296,7 +296,7 @@ def _linkedin(text: str) -> None:
     if not access or not org:
         print(LINKEDIN_HELP)
         return
-    version = os.environ.get("LINKEDIN_VERSION", "202511")
+    version = os.environ.get("LINKEDIN_VERSION", "202611")
     payload = {
         "author": f"urn:li:organization:{org}",
         "commentary": text[:2900],
