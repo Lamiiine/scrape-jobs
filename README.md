@@ -27,7 +27,7 @@ LinkedIn must approve an app before it can post. Create one at https://www.linke
 <!-- START OF JOB LISTINGS -->
 # Visa sponsorship jobs
 
-Updated on 2026-11-21 13:51:13 UTC
+Updated on 2026-11-21 15:59:26 UTC
 
 - Listings: **87**
 - Sponsorship evidence confirmed: **62**
@@ -83,6 +83,7 @@ Apply links are employer or ATS URLs. Competitor boards are not used.
 
 _Showing 40 of 87. The full catalog is `data/latest-jobs.json`._
 <!-- END OF JOB LISTINGS -->
+
 
 
 
