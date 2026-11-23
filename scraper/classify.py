@@ -74,7 +74,9 @@ CONFIRMED_RE = re.compile(
     r"h-?1b\s+(?:visa\s+)?sponsorship|"
     r"visa[-\s]?unterst[uü]tzung|"
     r"visumsponsoring|"
-    r"sponsorship\s+for\s+(?:a\s+)?(?:work\s+)?visa"
+    r"sponsorship\s+for\s+(?:a\s+)?(?:work\s+)?visa|"
+    r"\bvisa\s+services\b|"
+    r"\bvisa\s+assistance\b"
     r")",
     re.I,
 )
