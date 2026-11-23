@@ -27,19 +27,25 @@ LinkedIn must approve an app before it can post. Create one at https://www.linke
 <!-- START OF JOB LISTINGS -->
 # Visa sponsorship jobs
 
-Updated on 2026-11-22 13:44:25 UTC
+Updated on 2026-11-23 16:45:00 UTC
 
-- Listings: **86**
-- Sponsorship evidence confirmed: **62**
-- Sponsorship evidence likely (known sponsor list): **24**
-- With a salary range: **33**
-- With relocation assistance in the posting: **21**
+- Listings: **82**
+- Sponsorship evidence confirmed: **63**
+- Sponsorship evidence likely (known sponsor list): **19**
+- With a salary range: **28**
+- With relocation assistance in the posting: **22**
 
 Only jobs with `sponsorship_evidence` of `confirmed` or `likely` are included.
 Apply links are employer or ATS URLs. Competitor boards are not used.
 
 | Title | Company | Location | Posted | Evidence | Apply |
 |-------|---------|----------|--------|----------|-------|
+| Strategy & Operations Manager | Monzo | Dublin, Ireland | 2026-11-23T15:46:51Z | likely | [Apply](https://job-boards.greenhouse.io/monzo/jobs/8411444) |
+| Industry Principal, Insurance | Anthropic | New York, NY, United States | 2026-11-23T15:43:32Z | confirmed | [Apply](https://job-boards.greenhouse.io/anthropic/jobs/5293104008) |
+| Software Engineer, Model-to-Product Behavior Engineering | Anthropic | San Francisco, CA, United States | 2026-11-23T14:45:28Z | confirmed | [Apply](https://job-boards.greenhouse.io/anthropic/jobs/5487188008) |
+| Program Manager, Cloud Partners | Anthropic | San Francisco, CA, United States | 2026-11-22T19:46:05Z | confirmed | [Apply](https://job-boards.greenhouse.io/anthropic/jobs/5491573008) |
+| Head of Campaign Operations | Anthropic | San Francisco, CA, United States | 2026-11-22T19:40:48Z | confirmed | [Apply](https://job-boards.greenhouse.io/anthropic/jobs/5491578008) |
+| Campaign Manager | Anthropic | San Francisco, CA, United States | 2026-11-22T19:37:34Z | confirmed | [Apply](https://job-boards.greenhouse.io/anthropic/jobs/5491575008) |
 | Research Engineer, Finetuning | Anthropic | San Francisco, CA, United States | 2026-11-21T12:52:27Z | confirmed | [Apply](https://job-boards.greenhouse.io/anthropic/jobs/5489567008) |
 | Manager, Applied AI Architect | Anthropic | Seoul, South Korea | 2026-11-21T12:24:21Z | confirmed | [Apply](https://job-boards.greenhouse.io/anthropic/jobs/5480986008) |
 | Research Operations, External Artifacts | Anthropic | Remote, United States | 2026-11-21T00:47:30Z | confirmed | [Apply](https://job-boards.greenhouse.io/anthropic/jobs/5490492008) |
@@ -74,15 +80,10 @@ Apply links are employer or ATS URLs. Competitor boards are not used.
 | Partner Marketing Manager, Cloud Partners EMEA | Anthropic | London, England, United Kingdom | 2026-11-17T13:28:19Z | confirmed | [Apply](https://job-boards.greenhouse.io/anthropic/jobs/5473999008) |
 | Software Engineer, Datacenter Server Lifecycle | Anthropic | Remote, United States | 2026-11-17T01:53:14Z | confirmed | [Apply](https://job-boards.greenhouse.io/anthropic/jobs/5484171008) |
 | Head of PMO, Workplace | Anthropic | San Francisco, CA, United States | 2026-11-17T01:27:33Z | confirmed | [Apply](https://job-boards.greenhouse.io/anthropic/jobs/5482207008) |
-| Staff+ Software Engineer, Deployment | Anthropic | London, England, United Kingdom | 2026-11-17T00:33:44Z | confirmed | [Apply](https://job-boards.greenhouse.io/anthropic/jobs/5484144008) |
-| Applied AI Architect, Beneficial Deployments (Non-Profits) | Anthropic | San Francisco, CA, United States | 2026-11-16T23:14:39Z | confirmed | [Apply](https://job-boards.greenhouse.io/anthropic/jobs/5484035008) |
-| Docs Lead, Platform | Anthropic | San Francisco, CA, United States | 2026-11-16T22:11:44Z | confirmed | [Apply](https://job-boards.greenhouse.io/anthropic/jobs/5482310008) |
-| Research Engineer, AI Monitoring | Anthropic | London, England, United Kingdom | 2026-11-16T21:28:41Z | confirmed | [Apply](https://job-boards.greenhouse.io/anthropic/jobs/5477416008) |
-| Creative Studio Resource Manager - Creative Ops | Monzo | Remote, Cardiff, United Kingdom | 2026-11-16T19:06:54Z | likely | [Apply](https://job-boards.greenhouse.io/monzo/jobs/8393062) |
-| GTM Strategy & Operations - Strategic Planning | Anthropic | New York, NY, United States | 2026-11-16T18:10:36Z | confirmed | [Apply](https://job-boards.greenhouse.io/anthropic/jobs/5481842008) |
 
-_Showing 40 of 86. The full catalog is `data/latest-jobs.json`._
+_Showing 40 of 82. The full catalog is `data/latest-jobs.json`._
 <!-- END OF JOB LISTINGS -->
+
 
 
 
