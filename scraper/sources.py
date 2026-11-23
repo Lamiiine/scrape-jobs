@@ -372,4 +372,10 @@ def fetch_all(today: date | None = None, workers: int = 6) -> tuple[list[Job], l
     except Exception as exc:
         errors.append(f"hn:whoishiring: {exc}")
         print(f"  source hn:whoishiring failed: {exc}")
+    try:
+        from scraper.relocate import fetch_relocate
+        found.extend(fetch_relocate(today))
+    except Exception as exc:
+        errors.append(f"relocate.me: {exc}")
+        print(f"  source relocate.me failed: {exc}")
     return found, errors

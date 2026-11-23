@@ -9,8 +9,10 @@ from __future__ import annotations
 
 import json
 import os
+import re
 from datetime import date, datetime, timezone
 from pathlib import Path
+from urllib.error import HTTPError
 from urllib.parse import urlencode
 from urllib.request import Request, urlopen
 
@@ -22,6 +24,7 @@ from scraper.urls import canonical_url, is_direct
 ROOT = Path(__file__).resolve().parent.parent
 POSTED_PATH = ROOT / "data" / "posted-ids.json"
 MAX_ROLES = 5
+MAX_PER_COMPANY = 2
 CHANNELS = ("telegram", "linkedin")
 
 TELEGRAM_HELP = """
@@ -147,7 +150,7 @@ def announce(
             else:
                 (linkedin_send or _linkedin)(message)
         except Exception as exc:
-            print(f"{channel} post failed: {type(exc).__name__}")
+            print(f"{channel} post failed: {_safe_error(exc)}")
             continue
         sent = _posted_set(ledger, channel)
         for job in chosen:
@@ -176,14 +179,30 @@ def _roles(count: int) -> str:
     return "role" if count == 1 else "roles"
 
 
-def select_roles(jobs: list[Job], limit: int = MAX_ROLES) -> list[Job]:
-    """Best first: confirmed, then a salary, then a direct employer link, then newest."""
-    chosen = [job for job in jobs if job_id(job)]
-    chosen.sort(key=lambda job: job.posted_at or job.post_date or "", reverse=True)
-    chosen.sort(key=lambda job: is_direct(job.apply_url), reverse=True)
-    chosen.sort(key=lambda job: bool(job.salary), reverse=True)
-    chosen.sort(key=lambda job: job.sponsorship_evidence == "confirmed", reverse=True)
-    return chosen[:limit]
+def select_roles(jobs: list[Job], limit: int = MAX_ROLES, per_company: int = MAX_PER_COMPANY) -> list[Job]:
+    """Best first, with at most two roles from the same employer in one digest."""
+    ranked = [job for job in jobs if job_id(job)]
+    ranked.sort(key=lambda job: job.posted_at or job.post_date or "", reverse=True)
+    ranked.sort(key=lambda job: is_direct(job.apply_url), reverse=True)
+    ranked.sort(key=lambda job: bool(job.salary), reverse=True)
+    ranked.sort(key=lambda job: job.sponsorship_evidence == "confirmed", reverse=True)
+    chosen: list[Job] = []
+    deferred: list[Job] = []
+    counts: dict[str, int] = {}
+    for job in ranked:
+        key = job.company.strip().lower()
+        if counts.get(key, 0) >= per_company:
+            deferred.append(job)
+            continue
+        counts[key] = counts.get(key, 0) + 1
+        chosen.append(job)
+        if len(chosen) == limit:
+            return chosen
+    for job in deferred:
+        chosen.append(job)
+        if len(chosen) == limit:
+            break
+    return chosen
 
 
 def job_id(job: Job) -> str:
@@ -290,8 +309,25 @@ def _telegram(text: str, on: date) -> None:
     )
 
 
+def linkedin_commentary(text: str) -> str:
+    """Escape characters LinkedIn's text format treats as markup."""
+    return re.sub(r"([\\(){}\[\]<>@|~])", r"\\\1", text)[:2900]
+
+
+def organization_id(raw: str) -> str:
+    match = re.search(r"(\d+)", raw or "")
+    return match.group(1) if match else ""
+
+
+def access_token(raw: str) -> str:
+    token = (raw or "").strip().strip('"').strip("'")
+    if token.lower().startswith("bearer "):
+        token = token[7:].strip()
+    return token
+
+
 def _linkedin(text: str) -> None:
-    org = os.environ.get("LINKEDIN_ORGANIZATION_ID", "").strip()
+    org = organization_id(os.environ.get("LINKEDIN_ORGANIZATION_ID", ""))
     access = _linkedin_token()
     if not access or not org:
         print(LINKEDIN_HELP)
@@ -299,7 +335,7 @@ def _linkedin(text: str) -> None:
     version = os.environ.get("LINKEDIN_VERSION", "202611")
     payload = {
         "author": f"urn:li:organization:{org}",
-        "commentary": text[:2900],
+        "commentary": linkedin_commentary(text),
         "visibility": "PUBLIC",
         "distribution": {
             "feedDistribution": "MAIN_FEED",
@@ -317,6 +353,8 @@ def _linkedin(text: str) -> None:
             "LinkedIn-Version": version,
             "X-Restli-Protocol-Version": "2.0.0",
             "Content-Type": "application/json",
+            # LinkedIn's edge rejects the scraper's "Bot" user agent.
+            "User-Agent": "visajobs-publisher/1.0 (+https://visajobs.xyz)",
         },
     )
 
@@ -338,7 +376,7 @@ def _linkedin_token() -> str:
         token = str(payload.get("access_token") or "")
         if token:
             return token
-    return os.environ.get("LINKEDIN_ACCESS_TOKEN", "").strip()
+    return access_token(os.environ.get("LINKEDIN_ACCESS_TOKEN", ""))
 
 
 def _post_form(url: str, fields: dict) -> dict:
@@ -357,6 +395,32 @@ def _post_form(url: str, fields: dict) -> dict:
     return parsed if isinstance(parsed, dict) else {}
 
 
+def _safe_error(exc: BaseException) -> str:
+    text = " ".join(str(exc).split())
+    return (text or type(exc).__name__)[:300]
+
+
+def _linkedin_failure(exc: HTTPError) -> str:
+    raw = b""
+    try:
+        raw = exc.read() or b""
+    except Exception:
+        raw = b""
+    text = raw.decode("utf-8", "replace")[:500]
+    message = ""
+    try:
+        data = json.loads(text)
+    except json.JSONDecodeError:
+        data = None
+    if isinstance(data, dict):
+        detail = str(data.get("message") or data.get("error_description") or "")
+        code = data.get("code") or data.get("serviceErrorCode") or ""
+        message = f"{code}: {detail}".strip(": ")
+    if not message:
+        message = " ".join(text.split())[:180]
+    return f"HTTP {exc.code} {message}".strip()
+
+
 def _post_json(url: str, payload: dict, headers: dict) -> None:
     req = Request(
         url,
@@ -364,7 +428,10 @@ def _post_json(url: str, payload: dict, headers: dict) -> None:
         headers={"User-Agent": UA, **headers},
         method="POST",
     )
-    with urlopen(req, timeout=30) as response:
-        status = getattr(response, "status", 200)
-        if status >= 300:
-            raise RuntimeError(f"HTTP {status}")
+    try:
+        with urlopen(req, timeout=30) as response:
+            status = getattr(response, "status", 200)
+            if status >= 300:
+                raise RuntimeError(f"HTTP {status}")
+    except HTTPError as exc:
+        raise RuntimeError(_linkedin_failure(exc)) from exc

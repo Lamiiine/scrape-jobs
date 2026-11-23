@@ -4,7 +4,14 @@ from pathlib import Path
 
 from scraper.models import Job
 from scraper.post_template import render_linkedin, render_telegram, render_telegram_preview
-from scraper.social import announce, job_id, select_roles, telegram_fields
+from scraper.social import (
+    announce,
+    job_id,
+    linkedin_commentary,
+    organization_id,
+    select_roles,
+    telegram_fields,
+)
 from scraper.urls import canonical_url
 
 
@@ -114,6 +121,29 @@ class RankingTests(unittest.TestCase):
         )
         self.assertNotIn("Paid likely", picked)
         self.assertNotIn("Aggregator", picked)
+
+    def test_digest_does_not_let_one_employer_take_every_slot(self):
+        roles = []
+        for index, company in enumerate(("Anthropic", "Picnic", "N26", "PayPay")):
+            for slot in range(3):
+                roles.append(
+                    job(
+                        f"{company} {slot}",
+                        company=company,
+                        url=f"https://jobs.example.com/{company}/{slot}",
+                        posted=f"2026-11-{10+index:02d}T0{slot}:00:00Z",
+                    )
+                )
+        picked = select_roles(roles)
+        companies = [item.company for item in picked]
+        self.assertEqual(len(picked), 5)
+        self.assertLessEqual(companies.count("Anthropic"), 2)
+        self.assertGreaterEqual(len(set(companies)), 3)
+
+    def test_linkedin_commentary_escapes_markup_and_org_id_is_digits(self):
+        self.assertEqual(linkedin_commentary("Role (remote)"), r"Role \(remote\)")
+        self.assertEqual(organization_id("urn:li:organization:90907794"), "90907794")
+        self.assertEqual(organization_id("90907794"), "90907794")
 
 
 class DeliveryTests(unittest.TestCase):

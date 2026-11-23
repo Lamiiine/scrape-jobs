@@ -10,7 +10,7 @@ from scraper.urls import canonical_url, is_competitor
 # Keeps the static jobs index from growing back into a 1 MB document,
 # and stops one employer's boilerplate from filling the board.
 MAX_BOARD = 350
-MAX_PER_COMPANY = 40
+MAX_PER_COMPANY = 15
 # Refuse to replace the live board when a scrape clearly failed.
 MIN_PUBLISH = 40
 # A requisition that has been open for a quarter is not a daily listing.
@@ -84,8 +84,29 @@ def select_board(
         chosen.append(job)
         if len(chosen) >= limit:
             break
-    chosen.sort(key=lambda job: job.posted_at or job.post_date, reverse=True)
-    return chosen
+    return _spread(chosen)
+
+
+def _spread(jobs: list[Job]) -> list[Job]:
+    """Rotate employers so the top of the board is not one company's newest roles."""
+    buckets: dict[str, list[Job]] = {}
+    order: list[str] = []
+    for job in jobs:
+        key = job.company.strip().lower()
+        if key not in buckets:
+            order.append(key)
+            buckets[key] = []
+        buckets[key].append(job)
+    mixed: list[Job] = []
+    while True:
+        progressed = False
+        for key in order:
+            pending = buckets[key]
+            if pending:
+                mixed.append(pending.pop(0))
+                progressed = True
+        if not progressed:
+            return mixed
 
 
 def job_from_site(record: dict) -> dict:
